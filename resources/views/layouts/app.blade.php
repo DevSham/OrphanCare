@@ -1,12 +1,21 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-      x-data="{ dark: false, mobileNav: false }"
+      x-data="{
+          dark: $persist(false).as('dark-mode'),
+          mobileNav: false
+      }"
+      x-init="
+          // Check system preference on initial load if no stored preference
+          if (typeof dark === 'boolean' && !dark) {
+              dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          }
+      "
       :class="{ 'dark': dark }" class="h-full">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>@yield('title', config('app.name'))</title>
-@vite(['resources/css/app.css','resources/js/app.js'])
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@yield('title', config('app.name'))</title>
+    @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body class="h-full bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
 
@@ -41,4 +50,3 @@
 </footer>
 </body>
 </html>
-
