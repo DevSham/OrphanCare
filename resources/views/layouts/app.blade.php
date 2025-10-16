@@ -1,52 +1,61 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-      x-data="{
-          dark: $persist(false).as('dark-mode'),
-          mobileNav: false
-      }"
-      x-init="
-          // Check system preference on initial load if no stored preference
-          if (typeof dark === 'boolean' && !dark) {
-              dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          }
-      "
-      :class="{ 'dark': dark }" class="h-full">
+<html lang="{{ str_replace('_','-', app()->getLocale()) }}" class="h-full">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@yield('title', config('app.name'))</title>
-    @vite(['resources/css/app.css','resources/js/app.js'])
-</head>
-<body class="h-full bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
 
-{{-- Top Bar --}}
-<header class="sticky top-0 z-30 border-b border-slate-200/80 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <button class="md:hidden p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
-                    @click="mobileNav = !mobileNav" aria-label="Toggle navigation">☰</button>
-            <a href="{{ url('/') }}" class="font-extrabold tracking-tight">Street Kid Christmas</a>
-        </div>
-        <div class="flex items-center gap-2">
-            <button class="p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-800"
-                    @click="dark = !dark" :aria-pressed="dark" aria-label="Toggle dark mode">
-                <template x-if="!dark">🌙</template>
-                <template x-if="dark">☀️</template>
-            </button>
-        </div>
+    {{-- No-flash theme (run before CSS) --}}
+    <script>
+        (function () {
+            try {
+                const KEY = 'theme'; // 'dark' | 'light'
+                const stored = localStorage.getItem(KEY);
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = stored ?? (prefersDark ? 'dark' : 'light');
+
+                document.documentElement.classList.toggle('dark', theme === 'dark');
+                document.documentElement.style.colorScheme = theme; // native form controls
+            } catch (_) {}
+        })();
+    </script>
+
+    @vite(['resources/css/app.css','resources/js/app.js'])
+    @filamentStyles
+    @filamentScripts
+    @stack('styles')
+</head>
+
+<body class="min-h-screen bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+<header class="sticky top-0 z-30 border-b border-slate-200/50 dark:border-slate-800/60 bg-white/70 dark:bg-slate-950/70 backdrop-blur">
+    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+{{--        <a href="{{ url('/') }}" class="font-semibold">My Site</a>--}}<p>&nbsp&nbsp&nbsp</p>
+
+        {{-- Theme Toggle --}}
+        <button
+            x-data
+            x-on:click="
+        const KEY = 'theme';
+        const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+        localStorage.setItem(KEY, next);
+        document.documentElement.classList.toggle('dark', next === 'dark');
+        document.documentElement.style.colorScheme = next;
+        window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: next } }));
+      "
+            type="button"
+            class="inline-flex items-center gap-2 rounded-xl border border-slate-300/50 dark:border-slate-700 px-3 py-1.5 text-sm hover:bg-slate-50 dark:hover:bg-slate-900"
+            aria-label="Toggle theme"
+        >
+            <span class="dark:hidden" style="color:#7A0E1B;">🌙 Dark</span>
+            <span class="hidden dark:inline">☀️ Light</span>
+        </button>
     </div>
 </header>
 
-{{-- Mobile drawer (optional) --}}
-<nav class="md:hidden fixed inset-0 z-20 bg-black/40" x-show="mobileNav" @click="mobileNav = false"></nav>
-
-{{-- Page content --}}
-<main class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
+<main class="mx-auto max-w-7xl px-4 py-8">
     @yield('content')
 </main>
 
-<footer class="border-t border-slate-200 dark:border-slate-700 py-6 text-center text-sm text-slate-600 dark:text-slate-300">
-    © {{ date('Y') }} {{ config('app.name') }} · Kampala, Uganda
-</footer>
+@stack('scripts')
 </body>
 </html>
+
