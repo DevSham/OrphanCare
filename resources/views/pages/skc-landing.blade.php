@@ -104,7 +104,7 @@
                 Informational only — no donations collected during rides. All gifts are processed securely and may be tax-deductible.
             </p>
             <div class="mt-5">
-                <a href="https://www.helpkidsup.org/donate" target="_blank" rel="noopener noreferrer"
+                <a href="https://donate.stripe.com/eVq4gz5fJe1Tg2J5SBenS0M" target="_blank" rel="noopener noreferrer"
                    class="inline-flex items-center gap-2 rounded-full border-2 border-[#7a0e1b] bg-[#7a0e1b] px-6 py-3
                   text-sm font-bold text-white transition hover:brightness-105 focus:outline-none
                   focus-visible:ring-4 focus-visible:ring-[#7a0e1b]/30"
