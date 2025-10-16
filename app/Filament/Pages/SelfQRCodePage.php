@@ -26,6 +26,7 @@ class SelfQRCodePage extends Page
 
     // Where the QR should point
     public string $qrUrl         = 'https://donate.stripe.com/eVq4gz5fJe1Tg2J5SBenS0M';
+    public string $landingUrl         = 'http://127.0.0.1:8000';
 
     // Background photo you showed (place your file in /public/images)
     public string $photoPath     = '/images/street-kid-2025.png';
@@ -38,10 +39,15 @@ class SelfQRCodePage extends Page
                 ->icon('heroicon-o-printer')
                 ->extraAttributes(['onclick' => 'window.print()']),
 
-            Action::make('openLink')
-                ->label('Open Link')
+            Action::make('Donation Link')
+                ->label('Donate')
                 ->icon('heroicon-o-arrow-top-right-on-square')
                 ->url(fn () => $this->qrUrl, shouldOpenInNewTab: true),
+
+            Action::make('Landing Page')
+                ->label('Landing Page')
+                ->icon('heroicon-o-arrow-top-right-on-square')
+                ->url(fn () => $this->landingUrl, shouldOpenInNewTab: true),
         ];
     }
 
