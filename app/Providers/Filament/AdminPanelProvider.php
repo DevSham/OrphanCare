@@ -18,6 +18,9 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Navigation\NavigationBuilder;
+use Filament\Navigation\NavigationGroup;
+use Filament\Navigation\NavigationItem;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -28,11 +31,16 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::hex('#7b2a23'), // Your brand color
             ])
+            ->sidebarCollapsibleOnDesktop() // Makes sidebar collapsible
+            ->sidebarWidth('20rem') // Custom sidebar width
+            ->sidebarFullyCollapsibleOnDesktop()// Allows complete collapse
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
+
             ->pages([
                 Dashboard::class,
             ])
