@@ -1,0 +1,27 @@
+/* Change the sidebar background and text color */
+.fi-sidebar {
+    @apply bg-gray-900; /* Dark background */
+}
+
+.fi-sidebar nav a {
+    @apply text-gray-100; /* Light text for links */
+}
+
+.fi-sidebar nav a:hover {
+    @apply bg-gray-700; /* Darker background on hover */
+}
+
+/* Change the active link background */
+.fi-sidebar nav a.fi-active {
+    @apply bg-primary-600; /* Active link background */
+}
+
+/* Change the sidebar header (logo) area */
+.fi-sidebar-header {
+    @apply bg-gray-800 border-gray-700;
+}
+
+/* Change the sidebar collapse button */
+.fi-sidebar-collapse-button {
+    @apply text-gray-300 hover:bg-gray-700;
+}

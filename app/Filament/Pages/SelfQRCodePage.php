@@ -5,31 +5,30 @@ namespace App\Filament\Pages;
 use Filament\Pages\Page;
 use Filament\Actions\Action;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 class SelfQRCodePage extends Page
 {
-//    protected static ?string $navigationIcon = 'heroicon-o-qr-code';
     protected static ?string $navigationLabel = 'Self QR Code';
     protected static ?string $title = 'Self QR Code';
     protected static ?string $slug = 'self-qr';
-    protected  string $view = 'filament.pages.self-qrcode-page';
+    protected string $view = 'filament.pages.self-qrcode-page';
 
-    // --- Editable content (you can later move these to DB/settings if you like) ---
-    public string $headline      = 'STREET KID CHRISTMAS 2025';
-    public string $subheadline   = 'This Ride Tells a Story';
-    public string $tagline       = 'Feeding Hope to Over 1,000 Children in Kampala, Uganda';
+    // ===== Poster text (mapped to the HTML) =====
+    public string $headline      = 'HELP KIDS UP';
+    public string $subheadline   = 'STREET KIDS';
+    public string $tagline       = 'CHRISTMAS PARTY 2025';
+    public string $mission       = 'Feeding Hope to Over 1,000 Children in Kampala, Uganda';
 
-    public string $body = "Each December, I travel home to Uganda to host a Christmas celebration for over 1,000 street children—sharing food, gifts, and love. This ride helps tell story";
+    public string $donationText  = 'With just $10 you can feed a child this Christmas';
+    public string $qrCaption     = 'Every Smile Has a Story';
+    public string $scanText      = 'Scan to Hear It';
 
-    public string $hostName      = "Jeff “JeffSmileZ”";
-    public string $hostSubtitle  = "A Ride With a Purpose";
-    public string $footerNote    = "Informational only — no donations collected during rides";
+    // Assets / links
+    public string $qrUrl      = 'https://donate.stripe.com/eVq4gz5fJe1Tg2J5SBenS0M';
+    public string $landingUrl = 'http://127.0.0.1:8000/support';
+    public string $photoPath  = '/images/street-kid-2025.png';          // put your hero image in /public/images
+    public ?string $logoPath  = '/images/logo.jpeg';        // optional; set to null to hide
 
-    // Where the QR should point
-    public string $qrUrl         = 'https://donate.stripe.com/eVq4gz5fJe1Tg2J5SBenS0M';
-    public string $landingUrl         = 'http://127.0.0.1:8000';
-
-    // Background photo you showed (place your file in /public/images)
-    public string $photoPath     = '/images/street-kid-2025.png';
 
     protected function getHeaderActions(): array
     {
@@ -53,27 +52,28 @@ class SelfQRCodePage extends Page
 
     public function getViewData(): array
     {
-        // build a base64 PNG QR so the Blade can just <img src="...">
+        // Inline QR as base64 PNG so the view can <img src="...">
         $qrPng = base64_encode(
             QrCode::format('png')->size(280)->margin(1)->generate($this->qrUrl)
         );
 
         return [
-            'headline'     => $this->headline,
-            'subheadline'  => $this->subheadline,
-            'tagline'      => $this->tagline,
-            'body'         => $this->body,
-            'hostName'     => $this->hostName,
-            'hostSubtitle' => $this->hostSubtitle,
-            'footerNote'   => $this->footerNote,
-            'photoPath'    => $this->photoPath,
-            'qrDataUrl'    => "data:image/png;base64,{$qrPng}",
+            'headline'      => $this->headline,
+            'subheadline'   => $this->subheadline,
+            'tagline'       => $this->tagline,
+            'mission'       => $this->mission,
+            'donationText'  => $this->donationText,
+            'qrCaption'     => $this->qrCaption,
+            'scanText'      => $this->scanText,
+            'photoPath'     => $this->photoPath,
+            'logoPath'      => $this->logoPath,
+            'qrDataUrl'     => "data:image/png;base64,{$qrPng}",
+
         ];
     }
 
     public static function canAccess(): bool
     {
-        // Restrict if you want. For now, anyone who can access the panel.
         return auth()->check();
     }
 }

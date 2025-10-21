@@ -33,11 +33,11 @@ class AdminPanelProvider extends PanelProvider
             ->login()
 
             ->colors([
-                'primary' => Color::hex('#7b2a23'), // Your brand color
+                'primary' => Color::hex('#7b2a23'),
             ])
-            ->sidebarCollapsibleOnDesktop() // Makes sidebar collapsible
-            ->sidebarWidth('20rem') // Custom sidebar width
-            ->sidebarFullyCollapsibleOnDesktop()// Allows complete collapse
+            ->sidebarCollapsibleOnDesktop()
+            ->sidebarWidth('20rem')
+            ->sidebarFullyCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
 
@@ -45,10 +45,6 @@ class AdminPanelProvider extends PanelProvider
                 Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
-//            ->widgets([
-//                AccountWidget::class,
-//                FilamentInfoWidget::class,
-//            ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,

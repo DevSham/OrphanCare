@@ -1,24 +1,15 @@
 <x-filament::page>
-
     <style>
-        @page {
-            size: A4 landscape;
-            margin: 0;
+        :root{
+            --maroon:#7A0E1B;
+            --maroon-ink:#5e0b15;
+            --gold:#C6A669;
+            --sand:#F6E9D5;
+            --ink:#1a1a1a;
+            --muted:#6b7280;
+            --radius:16px;
+            --max:880px;
         }
-        * {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            box-sizing: border-box;
-        }
-
-        /* PRINT OPTIMIZATION - Add these critical rules */
-        * {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            color-adjust: exact !important;
-            box-sizing: border-box;
-        }
-
         @media print {
             body, html {
                 margin: 0 !important;
@@ -54,315 +45,262 @@
             }
         }
 
-        /* Street Kid Christmas 2025 Styling */
-        .page {
-            font-family: 'Arial', 'Helvetica', sans-serif;
-            background: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
+        /* Screen defaults */
+        *{ box-sizing:border-box; -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+        html,body{ height:100%; }
+        body{ margin:0; background:#faf9f7; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--ink); }
+
+        .poster{
+            max-width:var(--max);
+            margin:auto;
+            background:#fff;
+            border-radius:clamp(0px,1vw,var(--radius));
+            overflow:hidden;
+            box-shadow:0 10px 30px rgba(0,0,0,.08);
+            break-inside: avoid;
+            page-break-inside: avoid;
         }
 
-        /* TOP MAROON BAND - Centered content */
-        .page section:first-child {
-            background-color: #7b2a23 !important;
-            padding: 1rem 1rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            flex: 0 0 auto;
-            min-height: 30vh;
+        .top{
+            background:var(--maroon);
+            color:#fff;
+            padding:clamp(18px,3vw,28px) clamp(16px,3vw,28px);
+            text-align:center;
+        }
+        .top h1{
+            margin:0 0 6px;
+            font-size:clamp(26px,5.2vw,44px);
+            font-weight:900;
+            letter-spacing:.4px;
+            line-height:1.1;
+        }
+        .top p{
+            margin:clamp(10px,1.8vw,14px) auto 0;
+            max-width:40ch;
+            font-size:clamp(13px,2.2vw,18px);
+            opacity:.95;
         }
 
-        .page section:first-child h1 {
-            color: white !important;
-            font-size: 3rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            max-width: 800px;
+        .photo-wrap{
+            position:relative;
+            background:#ddd;
+            overflow:hidden;
+            aspect-ratio:16/9;
+        }
+        .photo-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+        .band{
+            background:var(--maroon);
+            color:#fff;
+            display:grid;
+            grid-template-columns:1fr auto;
+            gap:clamp(12px,2.5vw,20px);
+            align-items:center;
+            padding:clamp(14px,3vw,20px);
+        }
+        .band p{ margin:0; font-size:clamp(14px,2.4vw,22px); font-weight:700; line-height:1.25; }
+        .qr{ background:#f7f1e6; border-radius:12px; padding:8px; box-shadow:0 2px 0 rgba(0,0,0,.06) inset; width:clamp(96px,22vw,152px); }
+        .qr img{ width:100%; height:auto; display:block; }
+
+        .footer{
+            background:var(--sand);
+            display:grid;
+            grid-template-columns:auto 1fr;
+            gap:clamp(10px,2.5vw,20px);
+            align-items:center;
+            padding:clamp(12px,3vw,22px);
+        }
+        .logo{ width:clamp(70px,18vw,110px); aspect-ratio:1/1; border-radius:10px; background:#fff; display:grid; place-items:center; box-shadow:0 1px 0 rgba(0,0,0,.06); overflow:hidden; }
+        .logo img{ width:88%; height:auto; display:block; }
+        .tagline{ color:var(--maroon-ink); font-weight:800; font-size:clamp(16px,3.2vw,28px); line-height:1.3; }
+        .subnote{ color:var(--muted); font-size:clamp(11px,1.8vw,13px); margin-top:4px; }
+
+        @media (max-width:560px){
+            .band{ grid-template-columns:1fr; justify-items:center; text-align:center; }
+            .footer{ grid-template-columns:1fr; justify-items:center; text-align:center; }
         }
 
-        .page section:first-child p:nth-of-type(1) {
-            color: white !important;
-            font-size: 1.6rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-            max-width: 800px;
+        /* ---------- PRINT: Fit exactly on one A4 page ---------- */
+        @page {
+            size: A4;
+            margin: 0;
         }
 
-        .page section:first-child p:nth-of-type(2) {
-            color: white !important;
-            font-size: 1.2rem;
-            font-weight: 800;
-            opacity: 0.95;
-            max-width: 800px;
-        }
+        @media print{
+            /* Hide everything except the poster */
+            body * { visibility: hidden; }
+            .fi-sidebar, .fi-header, .no-print { display:none !important; }
 
-        /* PHOTO SECTION - Centered content */
-        .page section:nth-child(2) {
-            position: relative;
-            flex: 1 1 auto;
-            min-height: 70vh;
-            background-size: cover !important;
-            background-position: center !important;
-            background-repeat: no-repeat !important;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden;
-        }
-
-        /* Dark overlay for better text readability */
-        .page section:nth-child(2)::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(0,0,0,0.3) 0%,
-                rgba(0,0,0,0.2) 20%,
-                rgba(0,0,0,0.4) 70%,
-                rgba(0,0,0,0.7) 100%
-            );
-            z-index: 1;
-        }
-
-        /* Content positioning - CENTERED */
-        .page section:nth-child(2) > div:first-of-type {
-            position: relative;
-            z-index: 2;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            flex: 1;
-        }
-
-        /* Body text styling - CENTERED */
-        .page section:nth-child(2) p {
-            color: white !important;
-            font-size: 1.3rem;
-            line-height: 1.5;
-            font-weight: 800;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-            margin-bottom: 1.5rem;
-            max-width: 700px;
-            text-align: center;
-        }
-
-        /* QR Code styling - REDUCED BORDER & CENTERED */
-        .page section:nth-child(2) .inline-flex {
-            border: 2px solid white !important; /* Further reduced for printing */
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            background: white;
-            padding: 0.25rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .page section:nth-child(2) img {
-            border-radius: 6px;
-            max-width: 200px !important;
-            height: auto !important;
-        }
-
-        /* Footer section with gradient - CENTERED */
-        .page section:nth-child(2) > div:last-of-type {
-            position: relative;
-            z-index: 2;
-            padding: 1.5rem;
-            background: linear-gradient(
-                to top,
-                rgba(0,0,0,0.9) 0%,
-                rgba(0,0,0,0.7) 50%,
-                transparent 100%
-            );
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            flex: 0 0 auto;
-        }
-
-        /* Host name styling */
-        .page section:nth-child(2) h3 {
-            color: white !important;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            text-align: center;
-        }
-
-        /* Host subtitle */
-        .page section:nth-child(2) p:nth-of-type(2) {
-            color: white !important;
-            font-size: 1.1rem;
-            font-weight: 500;
-            opacity: 0.95;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        /* Footer note */
-        .page section:nth-child(2) p:nth-of-type(3) {
-            color: white !important;
-            font-size: 0.8rem;
-            opacity: 0.8;
-            margin-bottom: 0;
-            font-style: italic;
-            text-align: center;
-            max-width: 500px;
-        }
-
-        /* Grid adjustments for centered layout */
-        .page section:nth-child(2) .grid {
-            display: flex !important;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-
-        .page section:nth-child(2) .grid > * {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .page section:first-child {
-                padding: 1.5rem 1rem;
-                min-height: 25vh;
+            body{
+                background:#fff;
+                margin: 0;
+                padding: 0;
+                width: 210mm;
+                height: 300mm;
+                display: block;
             }
 
-            .page section:nth-child(2) img {
-                border-radius: 6px;
-                max-width: 100px !important;
-                height: 80% !important;
+            .poster, .poster * {
+                visibility: visible;
             }
 
-            .page section:first-child h1 {
-                font-size: 2rem;
+            .poster{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 210mm;
+                height: 300mm;
+                max-width: none;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
             }
 
-            .page section:first-child p:nth-of-type(1) {
-                font-size: 1.2rem;
+            /* Fixed height distribution to fit exactly 297mm */
+            .top{
+                padding: 8mm 10mm 6mm !important;
+                background: var(--maroon) !important;
+                text-align: center;
+                flex: 0 0 65mm; /* Fixed height for top section */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .top h1{
+                font-size: 6.5mm !important;
+                margin: 0 0 2mm !important;
+                font-weight: 900;
+                color: #ffffff !important;
+                line-height: 1.1;
+            }
+            .top p{
+                font-size: 3.8mm !important;
+                color: #ffffff !important;
+                opacity: 0.95 !important;
+                margin: 2mm auto 0 !important;
+                max-width: 38ch;
             }
 
-            .page section:first-child p:nth-of-type(2) {
-                font-size: 1rem;
+            /* Photo - fixed height */
+            .photo-wrap{
+                aspect-ratio: auto;
+                flex: 0 0 140mm; /* Fixed height for photo */
+                overflow: hidden;
+            }
+            .photo-wrap img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
 
-            .page section:nth-child(2) p {
-                font-size: 1rem;
+            /* Band - fixed height */
+            .band{
+                padding: 5mm 10mm !important;
+                gap: 6mm;
+                background: var(--maroon) !important;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                align-items: center;
+                flex: 0 0 40mm; /* Fixed height for band */
+            }
+            .band p{
+                font-size: 4.5mm !important;
+                color: #ffffff !important;
+                font-weight: 700;
+                margin: 0;
+                line-height: 1.2;
+            }
+            .qr{
+                width: 32mm;
+                padding: 2.5mm !important;
+                border-radius: 2.5mm;
+                background: #f7f1e6 !important;
+            }
+            .qr img{
+                width: 100%;
+                height: auto;
             }
 
-            .page section:nth-child(2) .inline-flex {
-                border-width: 1px !important;
+            /* Footer - fixed height */
+            .footer{
+                padding: 5mm 10mm !important;
+                gap: 6mm;
+                background: var(--sand) !important;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                align-items: center;
+                flex: 0 0 42mm; /* Fixed height for footer */
+            }
+            .logo{
+                width: 38mm;
+                border-radius: 2.5mm;
+                background: #fff !important;
+            }
+            .tagline{
+                font-size: 4.5mm !important;
+                font-weight: 800;
+                color: var(--maroon-ink) !important;
+                margin: 0;
+                line-height: 1.2;
+            }
+            .subnote{
+                font-size: 3mm !important;
+                color: #666666 !important;
+                margin-top: 1mm;
             }
 
-            .page section:nth-child(2) img {
-                max-width: 150px !important;
+            /* Prevent any page breaks */
+            .poster,
+            .top,
+            .photo-wrap,
+            .band,
+            .footer,
+            .top *,
+            .band *,
+            .footer * {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                page-break-after: avoid !important;
+                page-break-before: avoid !important;
             }
-
-            .page section:nth-child(2) h3 {
-                font-size: 1.4rem;
-            }
-
-            .page section:nth-child(2) p:nth-of-type(2) {
-                font-size: 0.9rem;
-            }
-
-            .page section:nth-child(2) p:nth-of-type(3) {
-                font-size: 0.7rem;
-            }
-        }
-
-
-        /* Force solid colors in print */
-        * {
-            -webkit-print-color-adjust: exact !important;
-            color-adjust: exact !important;
         }
     </style>
 
-    <div class="page avoid-break-inside no-page-break ">
-
-        {{-- 1) TOP MAROON BAND (force white for all children) --}}
-        <section
-            class=""
-            style="background-color:#7b2a23"
-        >
-            <h1 class="!text-white text-4xl md:text-6xl font-extrabold tracking-tight uppercase">
-                {{ $headline }}
-            </h1>
-            <p class="!text-white mt-3 text-2xl md:text-3xl font-semibold">
-                {{ $subheadline }}
-            </p>
-            <p class="!text-white mt-4 text-lg md:text-2xl font-medium">
+    <main class="poster">
+        <section class="top">
+            <h1>
+                {{ $headline }}<br>
+                {{ $subheadline }}<br>
                 {{ $tagline }}
-            </p>
+            </h1>
+            <p>{{ $mission }}</p>
         </section>
 
-        {{-- 2) PHOTO SECTION --}}
-        <section
-            class=""  {{-- isolate = new stacking context so z works predictably --}}
-        style="background-image:url('{{ asset(ltrim($photoPath, '/')) }}'); background-size:cover; background-position:center; background-repeat:no-repeat;"
-        >
-            {{-- soft dark veil UNDER content --}}
-            <div class="absolute inset-0 bg-black/25 z-0"></div>
+        <figure class="photo-wrap" aria-label="Serving food to children">
+            <img src="{{ asset(ltrim($photoPath,'/')) }}"
+                 alt="Volunteers serving a smiling child during the Christmas party">
+        </figure>
 
-            {{-- content grid (paragraph + QR) ABOVE overlay --}}
-            <div class="px-6 py-8 md:px-10 md:py-10">
-                <div class="grid grid-cols-1 gap-8 md:grid-cols-12 items-center">
-                    {{-- Paragraph --}}
-                    <p class="">
-                        {{ $body }}
-                    </p>
+        <section class="band" aria-label="Donation prompt and QR">
+            <p>{{ $donationText }}</p>
+            <div class="qr" aria-label="QR to donation or info page">
+                <img src="{{ $qrDataUrl }}" alt="Scan to donate or learn more">
+            </div>
+        </section>
 
-                    {{-- QR to the right, with thick white border like poster --}}
-                    <div class="md:col-span-5 ">
-                        <div class="">
-                            <p><caption>Scan Me!</caption></p>
-                            <img src="{{ $qrDataUrl }}" alt="QR Code" class="h-56 w-56">
-                        </div>
-                    </div>
+        <footer class="footer">
+            @if(!empty($logoPath))
+                <div class="logo" aria-hidden="true">
+                    <img src="{{ asset(ltrim($logoPath,'/')) }}" alt="Help Kids Up logo">
                 </div>
+            @endif
+            <div>
+                <div class="tagline">{{ $qrCaption }} — {{ $scanText }}</div>
+                <div class="subnote">Thank you for spreading hope this Christmas.</div>
             </div>
-
-            {{-- heavy bottom gradient for name/subtitle/footer --}}
-
-            {{-- footer text over the gradient --}}
-            <div class="px-6 pb-8 md:px-10 text-center">
-                <h3 class="!text-white text-3xl md:text-4xl">
-                    {{ $hostName }}
-                </h3>
-                <p class="!text-white  text-xl md:text-2xl">
-                    {{ $hostSubtitle }}
-                </p>
-                <p class="!text-white text-sm md:text-base drop-shadow">
-                    {{ $footerNote }}
-                </p>
-            </div>
-        </section>
-    </div>
+        </footer>
+    </main>
 </x-filament::page>
