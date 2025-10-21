@@ -35,22 +35,23 @@
             {{-- Section: Purpose --}}
             <section class="mt-10" aria-labelledby="purpose">
                 <div class="h-0.5 w-24 rounded bg-[#C6A669]"></div>
-                <h2 id="purpose"
+                <h1 id="purpose"
                     class="mt-3 text-lg sm:text-xl font-extrabold tracking-tight text-[#5e0b15] dark:text-[#C6A669]">
                     A Ride With a Purpose
-                </h2>
+                </h1>
 
                 <div class="mt-5 grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start">
-                    <div class="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                    <div class="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
                         Every December, I travel home to Uganda to host a Christmas celebration for children who once called the
                         streets home a day filled with music, laughter, food, and the simple joy of being seen and loved.
                     </div>
 
-                    <figure class="aspect-[4/3] rounded-xl border border-dashed border-slate-300 bg-slate-50 p-6
+                    <div class="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-2
                                 text-center text-slate-500 grid place-content-center
                                 dark:border-slate-700 dark:bg-slate-900/40">
-                        <figcaption class="text-xs sm:text-sm">[ PHOTO PLACEHOLDER — Jeff with Kids ]</figcaption>
-                    </figure>
+                        <img src="/images/xmas party for street kids 2018_037.JPG" width="100%" height="100%"/>
+
+                    </div>
                 </div>
             </section>
 
