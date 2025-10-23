@@ -23,7 +23,7 @@ class OtherQRCodePage extends Page
 
     public string $body = "Each December, I travel home to Uganda to host a Christmas celebration for over 1,000 street children—sharing food, gifts, and love. This ride helps tell story";
 
-    public string $hostName      = "Jeff “JeffSmileZ”";
+    public string $hostName      = "Jeff! Your Rider Today.";
     public string $hostSubtitle  = "A Ride With a Purpose";
     public string $footerNote    = "Informational only — no donations collected during rides";
 
@@ -32,7 +32,7 @@ class OtherQRCodePage extends Page
     public string $landingUrl         = 'http://127.0.0.1:8000';
 
     // Background photo you showed (place your file in /public/images)
-    public string $photoPath     = '/images/street-kid-2025.png';
+    public string $photoPath     = '/images/qrpic.jpeg';
 
     protected function getHeaderActions(): array
     {

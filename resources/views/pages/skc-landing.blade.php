@@ -1,8 +1,84 @@
 {{-- resources/views/pages/street-kids-christmas-2025.blade.php --}}
 @extends('layouts.app')
 
-@section('title', 'Street Kid Christmas 2025 — This Ride Tells a Story')
+@section('title', 'Street Kids Christmas 2025. This Ride Tells a Story')
+<style>
+    .slider-container {
+        overflow: hidden;
+        position: relative;
+    }
 
+    .slider-track {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+        flex: 0 0 100%;
+        min-width: 0;
+    }
+
+    @media (min-width: 640px) {
+        .slide {
+            flex: 0 0 50%;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .slide {
+            flex: 0 0 33.333333%;
+        }
+    }
+
+    .slider-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.7);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        z-index: 10;
+    }
+
+    .slider-nav:hover {
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .slider-nav.prev {
+        left: 10px;
+    }
+
+    .slider-nav.next {
+        right: 10px;
+    }
+
+    .slider-dots {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .slider-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #cbd5e1;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .slider-dot.active {
+        background: #475569;
+    }
+</style>
 @section('content')
     <div>
         {{-- Hero --}}
@@ -10,7 +86,7 @@
             <div class="rounded-xl bg-[#7A0E1B] text-white shadow">
                 <div class="px-4 py-8 sm:px-10 sm:py-10 text-center">
                     <h1 class="text-balance text-2xl sm:text-4xl font-extrabold leading-tight tracking-tight">
-                        STREET KID CHRISTMAS 2025 <span class="opacity-95">This Ride Tells a Story</span>
+                        STREET KIDS CHRISTMAS 2025 <br class="opacity-95">This Ride Tells a Story</br>
                     </h1>
                     <p class="mt-2 text-sm sm:text-base text-white/90">
                         Feeding Hope to Over 1,000 Children in Kampala, Uganda
@@ -46,10 +122,10 @@
                         streets home a day filled with music, laughter, food, and the simple joy of being seen and loved.
                     </div>
 
-                    <div class="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-2
+                    <div class="rounded-xl border border-dashed border-slate-300 bg-slate-50
                                 text-center text-slate-500 grid place-content-center
                                 dark:border-slate-700 dark:bg-slate-900/40">
-                        <img src="/images/xmas party for street kids 2018_037.JPG" width="100%" height="100%"/>
+                        <img src="/images/Jeff.JPG" width="100%" height="100%"/>
 
                     </div>
                 </div>
@@ -64,20 +140,22 @@
                 </h2>
 
                 <div class="mt-5 grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start">
-                    <figure class="order-last aspect-[4/3] rounded-xl border border-dashed border-slate-300 bg-slate-50 p-6
-                                text-center text-slate-500 grid place-content-center
-                                dark:order-first dark:border-slate-700 dark:bg-slate-900/40">
-                        <figcaption class="text-xs sm:text-sm">[ PHOTO PLACEHOLDER — Celebration Scene ]</figcaption>
-                    </figure>
 
-                    <div class="space-y-4 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                    <div class="rounded-xl border border-dashed border-slate-300 bg-slate-50
+                                text-center text-slate-500 grid place-content-center
+                                dark:border-slate-700 dark:bg-slate-900/40">
+                        <img src="/images/kidsFacepaint.JPG" width="100%" height="100%"/>
+
+                    </div>
+
+                    <div class="space-y-4 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
                         <p>
                             It began on <strong>Christmas Day, 2011</strong>. The next year, I made a promise:
                             <em>no child should spend Christmas like that again.</em> What started with
                             <strong>250 children</strong> has grown to serving <strong>1,000+ children</strong> each Christmas.
                         </p>
                         <blockquote
-                            class="rounded-xl border-l-4 border-[#7A0E1B] bg-[#7A0E1B]/5 p-4 italic text-slate-800 dark:text-slate-200">
+                            class="rounded-xl border-l-4 border-[#7A0E1B] bg-[#7A0E1B]/5 p-4 italic text-slate-800 dark:text-slate-300">
                             “What began with 250 plates of food has become a celebration of love, faith, and community.”
                         </blockquote>
                     </div>
@@ -95,23 +173,71 @@
                     Every smile tells a story. Every meal shared plants a seed of hope.
                 </p>
 
-                <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
-                    <div class="h-44 rounded-lg border border-dashed border-slate-300 bg-slate-50
-                            grid place-content-center text-slate-500
-                            dark:border-slate-700 dark:bg-slate-900/40">
-                        [ Image ]
+                <div class="max-w-6xl mx-auto">
+
+                    <div class="slider-container rounded-lg">
+                        <div class="slider-track">
+                            <!-- Slide 1 -->
+                            <div class="slide p-2">
+                                <div class="rounded-lg border border-dashed border-slate-300 bg-slate-50 grid place-content-center text-slate-500 dark:border-slate-700 dark:bg-slate-900/40">
+                                    <span><img src="/images/bread.JPG" width="100%" height="100%"/></span>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="slide p-2">
+                                <div class="h-44 rounded-lg border border-dashed border-slate-300 bg-slate-50 grid place-content-center text-slate-500 dark:border-slate-700 dark:bg-slate-900/40">
+                                    <span><img src="/images/HELP UP  KIDS-49.JPG" width="100%" height="100%"/></span>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="slide p-2">
+                                <div class="h-44 rounded-lg border border-dashed border-slate-300 bg-slate-50 grid place-content-center text-slate-500 dark:border-slate-700 dark:bg-slate-900/40">
+                                    <span>
+                                        <img src="/images/xmas party for street kids 2018_037.JPG" width="100%" height="100%"/>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4 -->
+                            <div class="slide p-2">
+                                <div class="h-44 rounded-lg border border-dashed border-slate-300 bg-slate-50 grid place-content-center text-slate-500 dark:border-slate-700 dark:bg-slate-900/40">
+                                    <span>Image 4</span>
+                                </div>
+                            </div>
+
+                            <!-- Slide 5 -->
+                            <div class="slide p-2">
+                                <div class="h-44 rounded-lg border border-dashed border-slate-300 bg-slate-50 grid place-content-center text-slate-500 dark:border-slate-700 dark:bg-slate-900/40">
+                                    <span>Image 5</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation buttons -->
+                        <button class="slider-nav prev">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <button class="slider-nav next">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
                     </div>
-                    <div class="h-44 rounded-lg border border-dashed border-slate-300 bg-slate-50
-                            grid place-content-center text-slate-500
-                            dark:border-slate-700 dark:bg-slate-900/40">
-                        [ Image ]
-                    </div>
-                    <div class="h-44 rounded-lg border border-dashed border-slate-300 bg-slate-50
-                            grid place-content-center text-slate-500
-                            dark:border-slate-700 dark:bg-slate-900/40">
-                        [ Image ]
+
+                    <!-- Dots indicator -->
+                    <div class="slider-dots">
+                        <span class="slider-dot active" data-index="0"></span>
+                        <span class="slider-dot" data-index="1"></span>
+                        <span class="slider-dot" data-index="2"></span>
+                        <span class="slider-dot" data-index="3"></span>
+                        <span class="slider-dot" data-index="4"></span>
                     </div>
                 </div>
+
 
                 <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">
                     Through <strong>Help Kids Up Kampala</strong>, we’ve seen children return to school, reunite with family, and dream again.
@@ -169,3 +295,86 @@
         </main>
     </div>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const track = document.querySelector('.slider-track');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.slider-nav.prev');
+        const nextBtn = document.querySelector('.slider-nav.next');
+        const dots = document.querySelectorAll('.slider-dot');
+
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+
+        // Calculate slides per view based on screen width
+        function getSlidesPerView() {
+            if (window.innerWidth >= 768) return 3;
+            if (window.innerWidth >= 640) return 2;
+            return 1;
+        }
+
+        let slidesPerView = getSlidesPerView();
+
+        // Update slide width based on slides per view
+        function updateSlideWidth() {
+            slidesPerView = getSlidesPerView();
+            updateSliderPosition();
+        }
+
+        // Update slider position
+        function updateSliderPosition() {
+            const slideWidth = 100 / slidesPerView;
+            const translateX = -currentIndex * slideWidth;
+            track.style.transform = `translateX(${translateX}%)`;
+
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        // Next slide
+        function nextSlide() {
+            if (currentIndex < totalSlides - slidesPerView) {
+                currentIndex++;
+            } else {
+                currentIndex = 0; // Loop back to start
+            }
+            updateSliderPosition();
+        }
+
+        // Previous slide
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = totalSlides - slidesPerView; // Loop to end
+            }
+            updateSliderPosition();
+        }
+
+        // Go to specific slide
+        function goToSlide(index) {
+            if (index >= 0 && index <= totalSlides - slidesPerView) {
+                currentIndex = index;
+                updateSliderPosition();
+            }
+        }
+
+        // Event listeners
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                goToSlide(parseInt(this.getAttribute('data-index')));
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', updateSlideWidth);
+
+        // Initialize slider
+        updateSliderPosition();
+    });
+</script>
