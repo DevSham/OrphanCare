@@ -333,7 +333,7 @@
             font-weight: 700 !important;
             color: #ffffff !important;
             font-size: 5mm !important;
-            text-align: center;
+            text-align: left;
             margin-bottom: 8mm !important;
         }
 
@@ -354,10 +354,92 @@
             height: 45mm !important;
             width: 45mm !important;
         }
+        /* --- Bottom-right QR positioning --- */
+        .qr-float{
+            position: absolute;
+            right: clamp(12px,3vw,24px);
+            bottom: clamp(12px,3vw,24px);
+            z-index: 10;              /* above the dark veil */
+        }
+
+        /* Keep QR readable on small screens: lift it a bit and shrink */
+        @media (max-width: 640px){
+            .qr-float{ right: 12px; bottom: 12px; }
+            .qr-float img{ width: 160px !important; height: 160px !important; }
+        }
+
+        /* Print placement with millimeter precision */
+        @media print{
+            .qr-float{ right: 10mm; bottom: 10mm; }
+        }
+        /* --- A4 layout on WEB (same grid as print) --- */
+        .use-print-on-web{
+            /* exact A4 dimensions */
+            width: 210mm;
+            height: 297mm;
+
+            /* center on page with a nice shadow */
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,.10);
+
+            /* same structure as print */
+            display: grid;
+            grid-template-rows: 62mm 175mm 60mm; /* top / middle / footer */
+            border-radius: 0; /* match print */
+            max-width: none;  /* override --max */
+        }
+
+        /* Scale down intelligently on small screens instead of squeezing */
+        @media (max-width: 900px){
+            .use-print-on-web{
+                transform: scale(calc(100vw / 210mm));
+                transform-origin: top center;
+                height: calc(297mm * (100vw / 210mm)); /* keep A4 aspect */
+                margin: 0 auto 24px;
+            }
+        }
+
+        /* Middle section readability: darker overlay + text shadow */
+        .middle-section{ position: relative; }
+        .middle-section::before{
+            content:"";
+            position:absolute; inset:0;
+            /* deeper veil so text always pops */
+            background: linear-gradient(to bottom, rgba(0,0,0,.40), rgba(0,0,0,.28));
+            z-index: 0;
+        }
+        /* remove the old light veil div from HTML (see step 3) */
+        .middle-section p{
+            text-shadow: 0 2px 4px rgba(0,0,0,.60);
+        }
+
+        /* Bottom-right QR stays pinned */
+        .qr-float{
+            position: absolute;
+            right: 10mm;
+            bottom: 10mm;
+            z-index: 10;
+        }
+        @media (max-width: 900px){
+            .qr-float{ right: clamp(12px,3vw,20px); bottom: clamp(12px,3vw,20px); }
+            .qr-float img{ width: 160px !important; height: 160px !important; }
+        }
+        /* --- Make middle text bright and glowing --- */
+        .middle-section p {
+            padding: 20px;
+            color: #ffffff !important;                 /* pure white text */
+            font-weight: 800 !important;               /* bold and clear */
+            text-shadow:
+                0 2px 6px rgba(0, 0, 0, 0.9),         /* strong dark glow behind */
+                0 0 10px rgba(255, 255, 255, 0.3);    /* faint white aura for contrast */
+            filter: brightness(115%);                  /* slightly enhances white intensity */
+        }
+
+
 
     </style>
 
-    <main class="poster">
+    <main class="poster use-print-on-web">
         <section class="top">
             <h1>
                 {{ $headline }}<br>
@@ -367,30 +449,28 @@
             <p>{{ $mission }}</p>
         </section>
         <section
-            class="middle-section relative flex items-center justify-center text-white"
+            class="middle-section relative text-white"
             style="background-image:url('{{ asset(ltrim($photoPath, '/')) }}'); background-size:cover; background-position:center; background-repeat:no-repeat;"
         >
             {{-- soft dark veil UNDER content --}}
-            <div class="absolute inset-0 bg-black/25 z-0"></div>
+{{--            <div class="absolute inset-0 bg-black/25 z-0"></div>--}}
 
-            {{-- content grid (paragraph + QR) ABOVE overlay --}}
-            <div class="px-6 py-8 md:px-10 md:py-10 w-full">
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center justify-items-center text-center md:text-left">
-                    {{-- Paragraph --}}
-                    <div class="font-bold text-white md:col-span-7 text-lg md:text-xl leading-relaxed">
-                        {{$donationText}}
-                    </div>
+            {{-- paragraph (flows normally) --}}
+            <div class="relative z-10 w-full px-6 py-10 md:px-10 md:py-12">
+                <p class="font-bold text-white text-lg md:text-xl leading-relaxed max-w-3xl">
+                    {{ $donationText }}
+                </p>
+            </div>
 
-                    {{-- QR to the right --}}
-                    <div class="md:col-span-1 flex flex-col items-center">
-                        <div class="bg-white/90 p-4 rounded-lg shadow-lg">
-                            <p class="text-black font-semibold mb-2 text-sm"><caption>Scan Me!</caption></p>
-                            <img src="{{ $qrDataUrl }}" alt="QR Code" class="h-48 w-48 md:h-56 md:w-56">
-                        </div>
-                    </div>
+            {{-- QR fixed to bottom-right --}}
+            <div class="qr-float">
+                <div class="bg-white/90 p-4 rounded-lg shadow-lg grid justify-items-center gap-2">
+                    <p class="text-black font-semibold text-xs uppercase tracking-wide m-0">Scan Me!</p>
+                    <img src="{{ $qrDataUrl }}" alt="QR Code" class="h-56 w-56 md:h-56 md:w-56">
                 </div>
             </div>
         </section>
+
 
 
         <footer class="footer">

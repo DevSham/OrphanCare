@@ -19,14 +19,14 @@ class SelfQRCodePage extends Page
     public string $tagline       = 'CHRISTMAS PARTY 2025';
     public string $mission       = 'Feeding Hope to Over 1,000 Children in Kampala, Uganda';
 
-    public string $donationText  = 'With just $10 you can feed a child this Christmas';
+    public string $donationText  = 'With just $10 you can feed a child this Christmas With just $10 you can feed a child this Christmas With just $10 you can feed a child this Christmas With just $10 you can feed a child this Christmas';
     public string $qrCaption     = 'Every Smile Has a Story';
     public string $scanText      = 'Scan to Hear It';
 
     // Assets / links
     public string $qrUrl      = 'https://donate.stripe.com/eVq4gz5fJe1Tg2J5SBenS0M';
     public string $landingUrl = 'http://127.0.0.1:8000/support';
-    public string $photoPath  = '/images/street-kid-2025.png';          // put your hero image in /public/images
+    public string $photoPath  = '/images/qrpic.jpeg';          // put your hero image in /public/images
     public ?string $logoPath  = '/images/logo.jpeg';        // optional; set to null to hide
 
 
