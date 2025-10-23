@@ -267,6 +267,94 @@
                 page-break-before: avoid !important;
             }
         }
+        /* Add to your existing CSS */
+        .middle-section {
+            min-height: 400px;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .middle-section {
+                min-height: 500px;
+            }
+        }
+
+        /*!* Print styles for the middle section *!*/
+        /*    .middle-section {*/
+        /*        flex: 0 0 140mm;*/
+        /*        display: flex;*/
+        /*        align-items: center;*/
+        /*        justify-content: center;*/
+        /*        position: relative;*/
+        /*        color: #ffffff !important;*/
+        /*    }*/
+
+        /*    .middle-section p {*/
+        /*        font-weight: 700 !important;*/
+        /*        color: #ffffff !important;*/
+        /*        font-size: 4mm !important;*/
+        /*        text-align: center;*/
+        /*    }*/
+
+        /*    .middle-section .grid {*/
+        /*        display: grid;*/
+        /*        grid-template-columns: 1fr auto;*/
+        /*        gap: 8mm;*/
+        /*        align-items: center;*/
+        /*        width: 100%;*/
+        /*    }*/
+
+        /*    .middle-section .bg-white\\/90 {*/
+        /*    background: rgba(255, 255, 255, 0.95) !important;*/
+        /*    padding: 3mm !important;*/
+        /*    border-radius: 2mm;*/
+        /*}*/
+
+        /*    .middle-section caption {*/
+        /*        color: #000000 !important;*/
+        /*        font-weight: 600;*/
+        /*        font-size: 3mm;*/
+        /*    }*/
+        /*    */
+        .middle-section {
+            flex: 0 0 180mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: #ffffff !important;
+        }
+
+        .middle-section .max-w-4xl {
+            max-width: 180mm !important;
+        }
+
+        .middle-section .font-bold {
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            font-size: 5mm !important;
+            text-align: center;
+            margin-bottom: 8mm !important;
+        }
+
+        .middle-section .bg-white\\/90 {
+            background: rgba(255, 255, 255, 0.95) !important;
+            padding: 4mm !important;
+            border-radius: 3mm;
+        }
+
+        .middle-section caption {
+            color: #000000 !important;
+            font-weight: 600;
+            font-size: 3.5mm;
+            margin-bottom: 2mm !important;
+        }
+
+        .middle-section img {
+            height: 45mm !important;
+            width: 45mm !important;
+        }
+
     </style>
 
     <main class="poster">
@@ -278,18 +366,32 @@
             </h1>
             <p>{{ $mission }}</p>
         </section>
+        <section
+            class="middle-section relative flex items-center justify-center text-white"
+            style="background-image:url('{{ asset(ltrim($photoPath, '/')) }}'); background-size:cover; background-position:center; background-repeat:no-repeat;"
+        >
+            {{-- soft dark veil UNDER content --}}
+            <div class="absolute inset-0 bg-black/25 z-0"></div>
 
-        <figure class="photo-wrap" aria-label="Serving food to children">
-            <img src="{{ asset(ltrim($photoPath,'/')) }}"
-                 alt="Volunteers serving a smiling child during the Christmas party">
-        </figure>
+            {{-- content grid (paragraph + QR) ABOVE overlay --}}
+            <div class="px-6 py-8 md:px-10 md:py-10 w-full">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center justify-items-center text-center md:text-left">
+                    {{-- Paragraph --}}
+                    <div class="font-bold text-white md:col-span-7 text-lg md:text-xl leading-relaxed">
+                        {{$donationText}}
+                    </div>
 
-        <section class="band" aria-label="Donation prompt and QR">
-            <p>{{ $donationText }}</p>
-            <div class="qr" aria-label="QR to donation or info page">
-                <img src="{{ $qrDataUrl }}" alt="Scan to donate or learn more">
+                    {{-- QR to the right --}}
+                    <div class="md:col-span-1 flex flex-col items-center">
+                        <div class="bg-white/90 p-4 rounded-lg shadow-lg">
+                            <p class="text-black font-semibold mb-2 text-sm"><caption>Scan Me!</caption></p>
+                            <img src="{{ $qrDataUrl }}" alt="QR Code" class="h-48 w-48 md:h-56 md:w-56">
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+
 
         <footer class="footer">
             @if(!empty($logoPath))
