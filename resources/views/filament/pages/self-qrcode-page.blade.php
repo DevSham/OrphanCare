@@ -127,6 +127,17 @@
         }
 
         @media print{
+            .middle-section .body-copy{
+                font-weight: 600mm !important;
+                color: #ffffff !important;
+                text-shadow: 0 2px 4px rgba(0,0,0,.60);
+                margin-top: 2px !important;
+                max-width: 180mm !important;                 /* keeps it clear of the QR zone */
+                padding-bottom: 120mm !important;              /* reserve space for the QR on the right */
+                padding-right: 2mm !important;              /* reserve space for the QR on the right */
+                font-size: clamp(20px, 3.2vw, 34px) !important;
+                line-height: 1.35 !important;
+            }
             /* Hide everything except the poster */
             body * { visibility: hidden; }
             .fi-sidebar, .fi-header, .no-print { display:none !important; }
@@ -279,43 +290,6 @@
             }
         }
 
-        /*!* Print styles for the middle section *!*/
-        /*    .middle-section {*/
-        /*        flex: 0 0 140mm;*/
-        /*        display: flex;*/
-        /*        align-items: center;*/
-        /*        justify-content: center;*/
-        /*        position: relative;*/
-        /*        color: #ffffff !important;*/
-        /*    }*/
-
-        /*    .middle-section p {*/
-        /*        font-weight: 700 !important;*/
-        /*        color: #ffffff !important;*/
-        /*        font-size: 4mm !important;*/
-        /*        text-align: center;*/
-        /*    }*/
-
-        /*    .middle-section .grid {*/
-        /*        display: grid;*/
-        /*        grid-template-columns: 1fr auto;*/
-        /*        gap: 8mm;*/
-        /*        align-items: center;*/
-        /*        width: 100%;*/
-        /*    }*/
-
-        /*    .middle-section .bg-white\\/90 {*/
-        /*    background: rgba(255, 255, 255, 0.95) !important;*/
-        /*    padding: 3mm !important;*/
-        /*    border-radius: 2mm;*/
-        /*}*/
-
-        /*    .middle-section caption {*/
-        /*        color: #000000 !important;*/
-        /*        font-weight: 600;*/
-        /*        font-size: 3mm;*/
-        /*    }*/
-        /*    */
         .middle-section {
             flex: 0 0 180mm;
             display: flex;
@@ -434,6 +408,17 @@
                 0 0 10px rgba(255, 255, 255, 0.3);    /* faint white aura for contrast */
             filter: brightness(115%);                  /* slightly enhances white intensity */
         }
+        .middle-section .body-copy{
+            font-weight: 600mm;
+            color: #ffffff !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,.60);
+            margin-top: 2px;
+            max-width: 180mm;                 /* keeps it clear of the QR zone */
+            padding-bottom: 120mm;               /* reserve space for the QR on the right */
+            padding-right: 2mm;               /* reserve space for the QR on the right */
+            font-size: clamp(10px, 3.2vw, 34px);
+            line-height: 1.35;
+        }
 
 
 
@@ -457,7 +442,7 @@
 
             {{-- paragraph (flows normally) --}}
             <div class="relative z-10 w-full px-6 py-10 md:px-10 md:py-12">
-                <p class="font-bold text-white text-lg md:text-xl leading-relaxed max-w-3xl">
+                <p class="body-copy">
                     {{ $donationText }}
                 </p>
             </div>

@@ -13,13 +13,16 @@ class OtherQRCodePage extends Page
 
     protected static ?string $navigationLabel = 'Other QR Code';
 
-    protected static ?string $title = 'Street Kid Christmas 2025';
+    protected static ?string $title = 'Street Kids Christmas 2025';
 
     protected static ?string $slug = 'street-kid-christmas';
 
-    public string $headline      = 'STREET KID CHRISTMAS 2025';
+    public string $headline      = 'STREET KIDS CHRISTMAS 2025';
     public string $subheadline   = 'This Ride Tells a Story';
     public string $tagline       = 'Feeding Hope to Over 1,000 Children in Kampala, Uganda';
+
+    public string $qrCaption     = 'Every Smile Has a Story';
+    public string $scanText      = 'Scan to Hear It';
 
     public string $body = "Each December, I travel home to Uganda to host a Christmas celebration for over 1,000 street children—sharing food, gifts, and love. This ride helps tell story";
 
@@ -71,6 +74,8 @@ class OtherQRCodePage extends Page
             'footerNote'   => $this->footerNote,
             'photoPath'    => $this->photoPath,
             'qrDataUrl'    => "data:image/png;base64,{$qrPng}",
+            'qrCaption' => $this->qrCaption,
+            'scanText' => $this->scanText,
         ];
     }
 

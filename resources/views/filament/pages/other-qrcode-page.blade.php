@@ -1,289 +1,505 @@
 <x-filament::page>
     <style>
-        /* --- Screen defaults (unchanged behavior) --- */
-        *{ box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-        :root{ --maroon:#7b2a23; }
-        .page{
-            font-family: Arial, Helvetica, sans-serif;
-            background:#fff;
-            display:flex; flex-direction:column;
-            min-height:100vh; overflow:hidden;
+        :root{
+            --maroon:#7A0E1B;
+            --maroon-ink:#5e0b15;
+            --gold:#C6A669;
+            --sand:#F6E9D5;
+            --ink:#1a1a1a;
+            --muted:#6b7280;
+            --radius:16px;
+            --max:880px;
         }
-        .hero{
-            background-color: var(--maroon);
-            padding: 1rem; display:grid; place-items:center; text-align:center;
-            min-height: 30vh;
-        }
-        .hero h1{ color:#fff; font-size:3rem; font-weight:900; letter-spacing:2px; line-height:1.1; margin:0 0 1rem; text-transform:uppercase; }
-        .hero .lead{ color:#fff; font-size:1.6rem; font-weight:800; line-height:1.2; margin:0 0 .5rem; }
-        .hero .sub{ color:#fff; font-size:1.2rem; font-weight:800; margin:0; }
-
-        .photo{
-            position:relative; flex:1 1 auto; min-height:60vh;
-            background-size:cover; background-position:center; background-repeat:no-repeat;
-            display:flex; flex-direction:column; justify-content:space-between;
-        }
-        /* keep the overlay for screen */
-        .photo::before{
-            content:''; position:absolute; inset:0; z-index:1;
-            background: linear-gradient(to bottom, rgba(0,0,0,.3) 0%, rgba(0,0,0,.2) 20%, rgba(0,0,0,.4) 70%, rgba(0,0,0,.7) 100%);
-        }
-        .photo .content{ position:relative; z-index:2; padding:2rem; }
-        .photo .grid{ display:grid; gap:2rem; }
-        @media (min-width: 768px){ .photo .grid{ grid-template-columns:2fr 1fr; } }
-
-        .photo .body{
-            color:#fff; font-size:1.3rem; line-height:1.5; font-weight:800;
-            text-shadow: 1px 1px 3px rgba(0,0,0,.8);
-            margin:0 0 2rem; max-width:70ch; text-align:left;
-        }
-
-        .qr{ justify-self:end; align-self:center; position:relative; top:-1rem; }
-        .qr figure{ margin:0; background:#fff; padding:.25rem; border:2px solid #fff; border-radius:8px; box-shadow:0 4px 15px rgba(0,0,0,.5); text-align:left; }
-        .qr figcaption{ color:#000; font-weight:700; margin:.25rem 0 .5rem; }
-        .qr img{ display:block; width:224px; height:224px; border-radius:8px; border:3px solid #fff; box-shadow:0 4px 10px rgba(0,0,0,.4); }
-
-        .photo .footer{
-            position:relative; z-index:2; padding:1.5rem; text-align:center;
-            background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.7) 50%, transparent 100%);
-        }
-        .photo .footer h3{ color:#fff; font-size:1.8rem; font-weight:700; margin:0 0 .5rem; }
-        .photo .footer .sub{ color:#fff; font-size:1.1rem; margin:.25rem 0; }
-        .photo .footer .note{ color:#fff; font-size:.85rem; opacity:.85; margin:.25rem auto 0; font-style:italic; max-width:500px; }
-
-        @media (max-width:768px){
-            .hero{ min-height:25vh; padding:1.5rem 1rem; }
-            .hero h1{ font-size:2rem; }
-            .hero .lead{ font-size:1.2rem; }
-            .hero .sub{ font-size:1rem; }
-            .photo .body{ font-size:1rem; }
-            .qr img{ width:150px; height:150px; }
-            .photo .footer h3{ font-size:1.4rem; }
-            .photo .footer .sub{ font-size:.95rem; }
-            .photo .footer .note{ font-size:.75rem; }
-            .qr{ justify-self:start; top:0; }
-            .photo .grid{ grid-template-columns:1fr; }
-        }
-
-        /* --- Print: make it behave like the crisp first poster --- */
-        @page { size:A4; margin:0; }
-
-        @media print{
-            /* show only the poster page content */
-            body *{ visibility: hidden; }
-            .fi-sidebar, .fi-header, .no-print{ display:none !important; }
-
-            html, body{
-                margin:0 !important; padding:0 !important; width:210mm !important; height:297mm !important;
-                background:#fff !important;
-            }
-
-            .page, .page *{ visibility: visible; }
-            .page{
-                position:absolute; top:0; left:0;
-                width:210mm; height:297mm; max-width:none;
-                margin:0; border:0; border-radius:0; box-shadow:none !important; overflow:hidden;
-                display:flex; flex-direction:column;
-            }
-
-            /* Replace vh with fixed mm and remove transparency/shadows */
-            .hero{
-                background:#7b2a23 !important;
-                color:#ffffff !important;
-                padding: 8mm 10mm 6mm !important;
-                min-height:unset; flex:0 0 65mm; display:flex; flex-direction:column; justify-content:center;
-                box-shadow:none !important;
-            }
-            .hero h1{
-                color:#ffffff !important; font-size:6.5mm !important; margin:0 0 2mm !important; text-shadow:none !important;
-            }
-            .hero .lead, .hero .sub{
-                color:#ffffff !important; opacity:1 !important; text-shadow:none !important; margin:1.5mm 0 0 !important; font-size:3.8mm !important;
-            }
-
-            .photo{
-                flex:0 0 190mm;   /* photo + footer combined; we’ll size footer below */
-                background-color:#000 !important; /* safety fill under image */
-            }
-            .photo::before{
-                /* stronger, non-fading veil; avoid semi-transparent stacking quirks */
-                background: rgba(0,0,0,.55) !important;
-            }
-
-            .photo .content{ padding:10mm !important; }
-            .photo .body{
-                color:#ffffff !important; text-shadow:none !important; font-size:4.2mm !important; max-width:170mm !important;
-            }
-
-            .qr{ top:0 !important; }
-            .qr figure{
-                box-shadow:none !important; border:2px solid #ffffff !important; background:#ffffff !important;
-            }
-            .qr img{
-                width:45mm !important; height:45mm !important; box-shadow:none !important; border:2px solid #ffffff !important;
-            }
-            .qr figcaption{ color:#000000 !important; font-size:3mm !important; }
-
-            .photo .footer{
-                background:#000000 !important; /* solid instead of gradient for consistent ink */
-                padding: 6mm 10mm !important;
-                flex:0 0 42mm; position:absolute; left:0; right:0; bottom:0; /* pin to bottom */
-            }
-            .photo .footer h3{ color:#ffffff !important; font-size:5mm !important; margin:0 0 2mm !important; }
-            .photo .footer .sub{ color:#ffffff !important; opacity:1 !important; font-size:3.8mm !important; }
-            .photo .footer .note{ color:#f0f0f0 !important; opacity:1 !important; font-size:3.2mm !important; text-shadow:none !important; }
-
-            /* No breaks/shadows/radius anywhere */
-            .page, .hero, .photo, .footer, .qr, .qr *, .photo *{
-                page-break-inside: avoid; break-inside: avoid;
-                box-shadow:none !important; border-radius:0 !important;
-            }
-        }
-        /* already present, keep it */
-        @page { size: A4; margin: 0; }
-
         @media print {
-            /* Ensure ONLY the poster prints */
-            body * { visibility: hidden; }
-            .fi-sidebar, .fi-header, .no-print { display: none !important; }
-
-            html, body {
+            body, html {
                 margin: 0 !important;
                 padding: 0 !important;
-                width: 210mm !important;
-                height: 297mm !important;
-                background: #fff !important;
+                height: 100% !important;
+                width: 100% !important;
             }
 
-            .page, .page * { visibility: visible; }
+            aside, header, nav, .no-print {
+                display: none !important;
+            }
+
             .page {
-                position: absolute; top: 0; left: 0;
-                width: 210mm; height: 297mm;
-                overflow: hidden;                    /* hard stop: never spill onto page 2 */
-                border: 0; border-radius: 0; box-shadow: none !important;
-                display: flex; flex-direction: column;
-            }
-
-            /* --- Fixed layout math: 65 + 190 + 42 = 297 mm --- */
-            .hero {
-                flex: 0 0 65mm;
-                padding: 8mm 10mm 6mm !important;
-                background: #7b2a23 !important;
-                color: #fff !important;
                 box-shadow: none !important;
-                display: flex; flex-direction: column; justify-content: center;
-            }
-            .hero h1,
-            .hero .lead,
-            .hero .sub { margin: 0 !important; }
-
-            .hero h1 { font-size: 6.2mm !important; line-height: 1.1 !important; text-shadow: none !important; }
-            .hero .lead { font-size: 3.6mm !important; line-height: 1.25 !important; }
-            .hero .sub  { font-size: 3.4mm !important; line-height: 1.25 !important; }
-
-            .photo {
-                flex: 0 0 190mm;                     /* total block for middle + footer */
-                position: relative;
-                background-color: #000 !important;   /* safety fill under image */
-            }
-            .photo::before { background: rgba(0,0,0,.55) !important; } /* solid veil for print */
-
-            /* Reserve space for footer so content never sits under it */
-            .photo .content {
-                padding: 10mm !important;
-                /* 190mm - 42mm footer - 10mm top/bottom padding ≈ 138mm content window */
-                max-height: 138mm;
-                overflow: hidden;                    /* trims long body text safely */
-            }
-
-            .photo .grid {
-                gap: 8mm !important;
-                grid-template-columns: 1fr auto !important; /* stable for print */
-            }
-
-            .photo .body {
-                font-size: 4.0mm !important;
-                line-height: 1.35 !important;
-                max-width: 170mm !important;
+                border: none !important;
                 margin: 0 !important;
-                color: #fff !important;
-                text-shadow: none !important;
-                /* keep paragraph from pushing layout */
-                max-height: 120mm;                   /* extra guard; trims overflow */
-                overflow: hidden;
+                padding: 0 !important;
+                width: 100% !important;
+                max-height: 92vh !important;
+                min-height: 92vh !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
             }
 
-            .qr { position: relative; top: 0 !important; justify-self: end; align-self: start; }
-            .qr figure {
-                background: #fff !important;
-                border: 2px solid #fff !important;
-                border-radius: 2mm !important;
-                box-shadow: none !important;
-                margin: 0 !important;
-                padding: 2mm !important;
-            }
-            .qr img {
-                width: 45mm !important; height: 45mm !important;
-                border: 2px solid #fff !important;
-                box-shadow: none !important;
-            }
-            .qr figcaption {
-                color: #000 !important;
-                font-size: 3mm !important;
-                margin: 1mm 0 0 !important;
-            }
-
-            /* Footer is pinned and sized */
-            .photo .footer {
-                position: absolute; left: 0; right: 0; bottom: 0;
-                flex: 0 0 42mm;
-                height: 42mm;                        /* explicit height to match math */
-                padding: 6mm 10mm !important;
-                background: #000 !important;         /* solid (no gradient) to avoid fade */
-                text-align: center;
-            }
-            .photo .footer h3   { font-size: 5mm !important; margin: 0 0 2mm !important; color: #fff !important; }
-            .photo .footer .sub { font-size: 3.8mm !important; margin: 0 !important; color: #fff !important; }
-            .photo .footer .note{
-                font-size: 3.1mm !important; margin: 2mm auto 0 !important;
-                color: #f0f0f0 !important; max-width: 170mm !important; text-shadow: none !important;
-            }
-
-            /* Remove any rounding/shadows & forbid breaks */
-            .page, .hero, .photo, .footer, .qr, .qr *, .photo *{
-                page-break-inside: avoid; break-inside: avoid;
-                border-radius: 0 !important; box-shadow: none !important;
+            /* Prevent any element from creating page breaks */
+            * {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+                page-break-before: avoid !important;
+                break-before: avoid !important;
             }
         }
+
+        /* Screen defaults */
+        *{ box-sizing:border-box; -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+        html,body{ height:100%; }
+        body{ margin:0; background:#faf9f7; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--ink); }
+
+        .poster{
+            max-width:var(--max);
+            margin:auto;
+            background:#fff;
+            border-radius:clamp(0px,1vw,var(--radius));
+            overflow:hidden;
+            box-shadow:0 10px 30px rgba(0,0,0,.08);
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .top{
+            background:var(--maroon);
+            color:#fff;
+            padding:clamp(18px,3vw,28px) clamp(16px,3vw,28px);
+            text-align:center;
+        }
+        .top h1{
+            margin:0 0 6px;
+            font-size:clamp(26px,5.2vw,44px);
+            font-weight:900;
+            letter-spacing:.4px;
+            line-height:1.1;
+        }
+        .top p{
+            margin:clamp(10px,1.8vw,14px) auto 0;
+            max-width:40ch;
+            font-size:clamp(13px,2.2vw,18px);
+            opacity:.95;
+        }
+
+        .photo-wrap{
+            position:relative;
+            background:#ddd;
+            overflow:hidden;
+            aspect-ratio:16/9;
+        }
+        .photo-wrap img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+        .band{
+            background:var(--maroon);
+            color:#fff;
+            display:grid;
+            grid-template-columns:1fr auto;
+            gap:clamp(12px,2.5vw,20px);
+            align-items:center;
+            padding:clamp(14px,3vw,20px);
+        }
+        .band p{ margin:0; font-size:clamp(14px,2.4vw,22px); font-weight:700; line-height:1.25; }
+        .qr{ background:#f7f1e6; border-radius:12px; padding:8px; box-shadow:0 2px 0 rgba(0,0,0,.06) inset; width:clamp(96px,22vw,152px); }
+        .qr img{ width:100%; height:auto; display:block; }
+
+        .footer{
+            background:var(--sand);
+            display:grid;
+            grid-template-columns:auto 1fr;
+            gap:clamp(10px,2.5vw,20px);
+            align-items:center;
+            padding:clamp(12px,3vw,22px);
+        }
+        .logo{ width:clamp(70px,18vw,110px); aspect-ratio:1/1; border-radius:10px; background:#fff; display:grid; place-items:center; box-shadow:0 1px 0 rgba(0,0,0,.06); overflow:hidden; }
+        .logo img{ width:88%; height:auto; display:block; }
+        .tagline{ color:var(--maroon-ink); font-weight:800; font-size:clamp(16px,3.2vw,28px); line-height:1.3; }
+        .subnote{ color:var(--muted); font-size:clamp(11px,1.8vw,13px); margin-top:4px; }
+
+        @media (max-width:560px){
+            .band{ grid-template-columns:1fr; justify-items:center; text-align:center; }
+            .footer{ grid-template-columns:1fr; justify-items:center; text-align:center; }
+        }
+
+        /* ---------- PRINT: Fit exactly on one A4 page ---------- */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print{
+            /*.middle-section .body-copy{*/
+            /*    font-size: 7.5mm !important;     !* increase size here *!*/
+            /*    line-height: 1.33 !important;*/
+            /*    letter-spacing: .05mm !important;*/
+
+            /*    !* Keep it on a single page and away from the footer/QR *!*/
+            /*    max-width: 170mm !important;*/
+            /*    max-height: 600mm !important;    !* guardrail for long text *!*/
+            /*    overflow: hidden !important;*/
+            /*    padding-bottom: 120mm !important;  !* QR clearance *!*/
+            /*}*/
+            .middle-section .body-copy{
+                font-weight: 600mm !important;
+                color: #ffffff !important;
+                text-shadow: 0 2px 4px rgba(0,0,0,.60);
+                margin-top: 2px !important;
+                max-width: 180mm !important;                 /* keeps it clear of the QR zone */
+                padding-bottom: 120mm !important;              /* reserve space for the QR on the right */
+                padding-right: 2mm !important;              /* reserve space for the QR on the right */
+                font-size: clamp(20px, 3.2vw, 34px) !important;
+                line-height: 1.35 !important;
+            }
+
+            /* Middle section body copy */
+            .middle-section p {
+                font-size: 8mm !important;      /* was ~5mm */
+                line-height: 1.35 !important;
+                letter-spacing: 0.05mm !important;
+            }
+
+            /* If longer copy risks colliding with the QR, narrow the text column slightly */
+            .middle-section .relative.z-10 {
+                max-width: 170mm !important;     /* adjust as needed; keeps text away from QR */
+            }
+
+            /* Footer headline/tagline */
+            .footer .tagline {
+                font-size: 6mm !important;       /* was 4.5mm */
+                line-height: 1.25 !important;
+            }
+
+            /* Footer small note */
+            .footer .subnote {
+                font-size: 4mm !important;       /* was 3mm */
+                line-height: 1.3 !important;
+            }
+            /* Hide everything except the poster */
+            body * { visibility: hidden; }
+            .fi-sidebar, .fi-header, .no-print { display:none !important; }
+
+            body{
+                background:#fff;
+                margin: 0;
+                padding: 0;
+                width: 210mm;
+                height: 300mm;
+                display: block;
+            }
+
+            .poster, .poster * {
+                visibility: visible;
+            }
+
+            .poster{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 210mm;
+                height: 300mm;
+                max-width: none;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* Fixed height distribution to fit exactly 297mm */
+            .top{
+                padding: 8mm 10mm 6mm !important;
+                background: var(--maroon) !important;
+                text-align: center;
+                flex: 0 0 65mm; /* Fixed height for top section */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .top h1{
+                font-size: 6.5mm !important;
+                margin: 0 0 2mm !important;
+                font-weight: 900;
+                color: #ffffff !important;
+                line-height: 1.1;
+            }
+            .top p{
+                font-size: 3.8mm !important;
+                color: #ffffff !important;
+                opacity: 0.95 !important;
+                margin: 2mm auto 0 !important;
+                max-width: 38ch;
+            }
+
+            /* Photo - fixed height */
+            .photo-wrap{
+                aspect-ratio: auto;
+                flex: 0 0 140mm; /* Fixed height for photo */
+                overflow: hidden;
+            }
+            .photo-wrap img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            /* Band - fixed height */
+            .band{
+                padding: 5mm 10mm !important;
+                gap: 6mm;
+                background: var(--maroon) !important;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                align-items: center;
+                flex: 0 0 40mm; /* Fixed height for band */
+            }
+            .band p{
+                font-size: 4.5mm !important;
+                color: #ffffff !important;
+                font-weight: 700;
+                margin: 0;
+                line-height: 1.2;
+            }
+            .qr{
+                width: 32mm;
+                padding: 2.5mm !important;
+                border-radius: 2.5mm;
+                background: #f7f1e6 !important;
+            }
+            .qr img{
+                width: 100%;
+                height: auto;
+            }
+
+            /* Footer - fixed height */
+            .footer{
+                padding: 5mm 10mm !important;
+                gap: 6mm;
+                background: var(--sand) !important;
+                display: grid;
+                grid-template-columns: auto 1fr;
+                align-items: center;
+                flex: 0 0 42mm; /* Fixed height for footer */
+            }
+            .logo{
+                width: 38mm;
+                border-radius: 2.5mm;
+                background: #fff !important;
+            }
+            .tagline{
+                font-size: 4.5mm !important;
+                font-weight: 800;
+                color: var(--maroon-ink) !important;
+                margin: 0;
+                line-height: 1.2;
+            }
+            .subnote{
+                font-size: 3mm !important;
+                color: #666666 !important;
+                margin-top: 1mm;
+            }
+
+            /* Prevent any page breaks */
+            .poster,
+            .top,
+            .photo-wrap,
+            .band,
+            .footer,
+            .top *,
+            .band *,
+            .footer * {
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                page-break-after: avoid !important;
+                page-break-before: avoid !important;
+            }
+        }
+        /* Add to your existing CSS */
+        .middle-section {
+            min-height: 400px;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .middle-section {
+                min-height: 500px;
+            }
+        }
+
+        .middle-section {
+            flex: 0 0 180mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: #ffffff !important;
+        }
+
+        .middle-section .max-w-4xl {
+            max-width: 180mm !important;
+        }
+
+        .middle-section .font-bold {
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            font-size: 5mm !important;
+            text-align: left;
+            margin-bottom: 8mm !important;
+        }
+
+        .middle-section .bg-white\\/90 {
+            background: rgba(255, 255, 255, 0.95) !important;
+            padding: 4mm !important;
+            border-radius: 3mm;
+        }
+
+        .middle-section caption {
+            color: #000000 !important;
+            font-weight: 600;
+            font-size: 3.5mm;
+            margin-bottom: 2mm !important;
+        }
+
+        .middle-section img {
+            height: 45mm !important;
+            width: 45mm !important;
+        }
+        /* --- Bottom-right QR positioning --- */
+        .qr-float{
+            position: absolute;
+            right: clamp(12px,3vw,24px);
+            bottom: clamp(12px,3vw,24px);
+            z-index: 10;              /* above the dark veil */
+        }
+
+        /* Keep QR readable on small screens: lift it a bit and shrink */
+        @media (max-width: 640px){
+            .qr-float{ right: 12px; bottom: 12px; }
+            .qr-float img{ width: 160px !important; height: 160px !important; }
+        }
+
+        /* Print placement with millimeter precision */
+        @media print{
+            .qr-float{ right: 10mm; bottom: 10mm; }
+        }
+        /* --- A4 layout on WEB (same grid as print) --- */
+        .use-print-on-web{
+            /* exact A4 dimensions */
+            width: 210mm;
+            height: 297mm;
+
+            /* center on page with a nice shadow */
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,.10);
+
+            /* same structure as print */
+            display: grid;
+            grid-template-rows: 62mm 175mm 60mm; /* top / middle / footer */
+            border-radius: 0; /* match print */
+            max-width: none;  /* override --max */
+        }
+
+        /* Scale down intelligently on small screens instead of squeezing */
+        @media (max-width: 900px){
+            .use-print-on-web{
+                transform: scale(calc(100vw / 210mm));
+                transform-origin: top center;
+                height: calc(297mm * (100vw / 210mm)); /* keep A4 aspect */
+                margin: 0 auto 24px;
+            }
+        }
+
+        /* Middle section readability: darker overlay + text shadow */
+        .middle-section{ position: relative; }
+        .middle-section::before{
+            content:"";
+            position:absolute; inset:0;
+            /* deeper veil so text always pops */
+            background: linear-gradient(to bottom, rgba(0,0,0,.40), rgba(0,0,0,.28));
+            z-index: 0;
+        }
+        /* remove the old light veil div from HTML (see step 3) */
+        .middle-section p{
+            text-shadow: 0 2px 4px rgba(0,0,0,.60);
+        }
+
+        /* Bottom-right QR stays pinned */
+        .qr-float{
+            position: absolute;
+            right: 10mm;
+            bottom: 10mm;
+            z-index: 10;
+        }
+        @media (max-width: 900px){
+            .qr-float{ right: clamp(12px,3vw,20px); bottom: clamp(12px,3vw,20px); }
+            .qr-float img{ width: 160px !important; height: 160px !important; }
+        }
+        /* --- Make middle text bright and glowing --- */
+        .middle-section p {
+            padding: 20px;
+            color: #ffffff !important;                 /* pure white text */
+            font-weight: 800 !important;               /* bold and clear */
+            text-shadow:
+                0 2px 6px rgba(0, 0, 0, 0.9),         /* strong dark glow behind */
+                0 0 10px rgba(255, 255, 255, 0.3);    /* faint white aura for contrast */
+            filter: brightness(115%);                  /* slightly enhances white intensity */
+        }
+        /* Screen: scale nicely on different viewports */
+        .middle-section .body-copy{
+            font-weight: 600;
+            color: #ffffff !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,.60);
+            margin-top: 2px;
+            max-width: 180mm;                 /* keeps it clear of the QR zone */
+            padding-bottom: 120mm;               /* reserve space for the QR on the right */
+            padding-right: 2mm;               /* reserve space for the QR on the right */
+            font-size: clamp(20px, 3.2vw, 34px);
+            line-height: 1.35;
+        }
+
+
+
+
     </style>
 
-    <div class="page">
-        <!-- HERO -->
-        <section class="hero">
-            <h1>{{ $headline }}</h1>
-            <p class="lead">{{ $subheadline }}</p>
-            <p class="sub">{{ $tagline }}</p>
+    <main class="poster use-print-on-web">
+        <section class="top">
+            <h1>
+                {{ $headline }}<br>
+                {{ $subheadline }}<br>
+                {{ $tagline }}
+            </h1>
         </section>
 
-        <!-- PHOTO SECTION -->
-        <section class="photo" style="background-image:url('{{ asset(ltrim($photoPath, '/')) }}');">
-            <div class="content">
-                <div class="grid">
-                    <p class="body">{{ $body }}</p>
-                    <div class="qr">
-                        <figure>
-                            <figcaption>Scan Me!</figcaption>
-                            <img src="{{ $qrDataUrl }}" alt="QR code linking to event page">
-                        </figure>
-                    </div>
+        <section
+            class="middle-section relative text-white"
+            style="background-image:url('{{ asset(ltrim($photoPath, '/')) }}'); background-size:cover; background-position:center; background-repeat:no-repeat;"
+        >
+            {{-- soft dark veil UNDER content --}}
+            {{--            <div class="absolute inset-0 bg-black/25 z-0"></div>--}}
+
+            {{-- paragraph (flows normally) --}}
+            <div class="relative z-10 w-full px-6 py-10 md:px-10 md:py-12">
+                <p class="body-copy">
+                    {{ $body }}
+                </p>
+            </div>
+
+            {{-- QR fixed to bottom-right --}}
+            <div class="qr-float">
+                <div class="bg-white/90 p-4 rounded-lg shadow-lg grid justify-items-center gap-2">
+                    <p class="text-black font-semibold text-xs uppercase tracking-wide m-0">Scan Me!</p>
+                    <img src="{{ $qrDataUrl }}" alt="QR Code" class="h-56 w-56 md:h-56 md:w-56">
                 </div>
             </div>
-
-            <div class="footer">
-                <h3>{{ $hostName }}</h3>
-                <p class="sub">{{ $hostSubtitle }}</p>
-                <p class="note">{{ $footerNote }}</p>
-            </div>
         </section>
-    </div>
+
+
+
+        <footer class="footer">
+            <div>
+                <div class="tagline">{{ $qrCaption }} — {{ $scanText }}</div>
+                <div class="subnote">Thank you for spreading hope this Christmas.</div>
+            </div>
+        </footer>
+    </main>
 </x-filament::page>
