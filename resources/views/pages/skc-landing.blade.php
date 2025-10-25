@@ -169,74 +169,82 @@
                     class="mt-3 text-lg sm:text-xl font-extrabold tracking-tight text-[#5e0b15] dark:text-[#C6A669]">
                     See the Smiles
                 </h2>
-                <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">
+                <p class="mt-1 text-lg text-slate-600 dark:text-slate-300">
                     Every smile tells a story. Every meal shared plants a seed of hope.
                 </p>
 
-                <div class="max-w-6xl mx-auto">
+                <div class="max-w-7xl mx-auto px-4"> <!-- widened to max-w-7xl + padding -->
 
-                    <div class="slider-container rounded-lg">
-                        <div class="slider-track">
+                    <div class="slider-container relative overflow-hidden rounded-xl">
+                        <div class="slider-track flex transition-transform duration-700 ease-in-out">
                             <!-- Slide 1 -->
-                            <div class="slide p-2">
-                                <div class="rounded-lg border border-dashed border-slate-300 bg-slate-50 grid place-content-center text-slate-500 dark:border-slate-700 dark:bg-slate-900/40">
-                                    <span><img src="/images/bread.JPG" width="100%" height="100%"/></span>
+                            <div class="slide flex-shrink-0 w-full p-2">
+                                <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
+                                    <img src="/images/kids.JPG" class="w-full h-full object-cover" alt="Kids"/>
                                 </div>
                             </div>
 
                             <!-- Slide 2 -->
-                            <div class="slide p-2">
-                                <div class="h-44 rounded-lg border border-dashed border-slate-300 bg-slate-50 grid place-content-center text-slate-500 dark:border-slate-700 dark:bg-slate-900/40">
-                                    <span><img src="/images/HELP UP  KIDS-49.JPG" width="100%" height="100%"/></span>
-                                </div>
-                            </div>
-
-                            <!-- Slide 3 -->
-                            <div class="slide p-2">
-                                <div class="h-44 rounded-lg border border-dashed border-slate-300 bg-slate-50 grid place-content-center text-slate-500 dark:border-slate-700 dark:bg-slate-900/40">
-                                    <span>
-                                        <img src="/images/xmas party for street kids 2018_037.JPG" width="100%" height="100%"/>
-                                    </span>
+                            <div class="slide flex-shrink-0 w-full p-2">
+                                <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
+                                    <img src="/images/qrpic.jpeg" class="w-full h-full object-cover" alt="Helping Kids"/>
                                 </div>
                             </div>
 
                             <!-- Slide 4 -->
-                            <div class="slide p-2">
-                                <div class="h-44 rounded-lg border border-dashed border-slate-300 bg-slate-50 grid place-content-center text-slate-500 dark:border-slate-700 dark:bg-slate-900/40">
-                                    <span>Image 4</span>
+                            <div class="slide flex-shrink-0 w-full p-2">
+                                <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
+                                    <img src="/images/drinks.JPG" class="w-full h-full object-cover" alt="Drinks"/>
                                 </div>
                             </div>
 
                             <!-- Slide 5 -->
-                            <div class="slide p-2">
-                                <div class="h-44 rounded-lg border border-dashed border-slate-300 bg-slate-50 grid place-content-center text-slate-500 dark:border-slate-700 dark:bg-slate-900/40">
-                                    <span>Image 5</span>
+                            <div class="slide flex-shrink-0 w-full p-2">
+                                <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
+                                    <img src="/images/bread.JPG" class="w-full h-full object-cover" alt="Bread"/>
+                                </div>
+                            </div>
+
+                            <!-- Slide 6 -->
+                            <div class="slide flex-shrink-0 w-full p-2">
+                                <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
+                                    <img src="/images/HELP UP  KIDS-49.JPG" class="w-full h-full object-cover" alt="Bread"/>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="slide flex-shrink-0 w-full p-2">
+                                <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
+                                    <img src="/images/xmas party for street kids 2018_037.JPG" class="w-full h-full object-cover" alt="Xmas Party"/>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Navigation buttons -->
-                        <button class="slider-nav prev">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" viewBox="0 0 20 20" fill="currentColor">
+                        <!-- Navigation -->
+                        <button class="slider-nav prev absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-slate-700" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                             </svg>
                         </button>
-                        <button class="slider-nav next">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-700" viewBox="0 0 20 20" fill="currentColor">
+
+                        <button class="slider-nav next absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-slate-700" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                             </svg>
                         </button>
                     </div>
 
-                    <!-- Dots indicator -->
-                    <div class="slider-dots">
-                        <span class="slider-dot active" data-index="0"></span>
-                        <span class="slider-dot" data-index="1"></span>
-                        <span class="slider-dot" data-index="2"></span>
-                        <span class="slider-dot" data-index="3"></span>
-                        <span class="slider-dot" data-index="4"></span>
+                    <!-- Dots -->
+                    <div class="slider-dots flex justify-center gap-2 mt-4">
+                        <span class="slider-dot active w-3 h-3 bg-slate-400 rounded-full cursor-pointer" data-index="0"></span>
+                        <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="1"></span>
+                        <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="2"></span>
+                        <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="3"></span>
+                        <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="4"></span>
+                        <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="5"></span>
+                        <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="6"></span>
                     </div>
                 </div>
+
 
 
                 <p class="mt-3 text-sm text-slate-600 dark:text-slate-300">
@@ -296,85 +304,134 @@
     </div>
 @endsection
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const track = document.querySelector('.slider-track');
-        const slides = document.querySelectorAll('.slide');
+        const slides = Array.from(document.querySelectorAll('.slide'));
         const prevBtn = document.querySelector('.slider-nav.prev');
         const nextBtn = document.querySelector('.slider-nav.next');
-        const dots = document.querySelectorAll('.slider-dot');
+        const dotsWrap = document.querySelector('.slider-dots');
 
-        let currentIndex = 0;
-        const totalSlides = slides.length;
+        if (!track || !slides.length) return;
 
-        // Calculate slides per view based on screen width
+        let currentPage = 0;           // "page" = a viewport of N slides
+        let slidesPerView = 1;
+        let totalSlides = slides.length;
+        let totalPages = 1;
+
         function getSlidesPerView() {
-            if (window.innerWidth >= 768) return 3;
-            if (window.innerWidth >= 640) return 2;
-            return 1;
+            // Match your breakpoints (can tweak as needed)
+            if (window.innerWidth >= 1024) return 3; // lg+
+            if (window.innerWidth >= 640)  return 2; // sm+
+            return 1;                                  // xs
         }
 
-        let slidesPerView = getSlidesPerView();
+        function setSlideWidths() {
+            const basis = (100 / slidesPerView) + '%';
+            slides.forEach(s => {
+                s.style.flex = `0 0 ${basis}`;   // width per slide
+                s.style.maxWidth = basis;        // keep from stretching
+            });
+            track.style.display = 'flex';
+            track.style.transition = 'transform 700ms ease-in-out';
+        }
 
-        // Update slide width based on slides per view
-        function updateSlideWidth() {
+        function calcPages() {
+            // If fewer slides than viewport, clamp to single page
+            if (totalSlides <= slidesPerView) {
+                totalPages = 1;
+            } else {
+                totalPages = totalSlides - slidesPerView + 1; // number of left-most positions
+            }
+        }
+
+        function buildDots() {
+            if (!dotsWrap) return;
+            dotsWrap.innerHTML = ''; // rebuild
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer';
+                dot.dataset.index = String(i);
+                dot.addEventListener('click', () => goToPage(i));
+                dotsWrap.appendChild(dot);
+            }
+        }
+
+        function setActiveDot() {
+            if (!dotsWrap) return;
+            const dots = dotsWrap.querySelectorAll('.slider-dot');
+            dots.forEach((d, i) => d.classList.toggle('active', i === currentPage));
+            dots.forEach((d) => {
+                // optional: stronger style for active
+                d.style.opacity = d.classList.contains('active') ? '1' : '0.5';
+            });
+        }
+
+        function updatePosition() {
+            const shiftPct = -(100 / slidesPerView) * currentPage;
+            track.style.transform = `translateX(${shiftPct}%)`;
+            setActiveDot();
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+            } else {
+                currentPage = 0; // loop
+            }
+            updatePosition();
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+            } else {
+                currentPage = totalPages - 1; // loop
+            }
+            updatePosition();
+        }
+
+        function goToPage(i) {
+            if (i < 0) i = 0;
+            if (i > totalPages - 1) i = totalPages - 1;
+            currentPage = i;
+            updatePosition();
+        }
+
+        function resizeAndReflow() {
+            const prevSlidesPerView = slidesPerView;
             slidesPerView = getSlidesPerView();
-            updateSliderPosition();
+
+            setSlideWidths();
+            calcPages();
+
+            // If slides-per-view changed, ensure current page is still valid
+            if (currentPage > totalPages - 1) currentPage = Math.max(0, totalPages - 1);
+
+            buildDots();
+            updatePosition();
         }
 
-        // Update slider position
-        function updateSliderPosition() {
-            const slideWidth = 100 / slidesPerView;
-            const translateX = -currentIndex * slideWidth;
-            track.style.transform = `translateX(${translateX}%)`;
+        // Bind buttons if present
+        prevBtn && prevBtn.addEventListener('click', prevPage);
+        nextBtn && nextBtn.addEventListener('click', nextPage);
 
-            // Update dots
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        }
-
-        // Next slide
-        function nextSlide() {
-            if (currentIndex < totalSlides - slidesPerView) {
-                currentIndex++;
-            } else {
-                currentIndex = 0; // Loop back to start
-            }
-            updateSliderPosition();
-        }
-
-        // Previous slide
-        function prevSlide() {
-            if (currentIndex > 0) {
-                currentIndex--;
-            } else {
-                currentIndex = totalSlides - slidesPerView; // Loop to end
-            }
-            updateSliderPosition();
-        }
-
-        // Go to specific slide
-        function goToSlide(index) {
-            if (index >= 0 && index <= totalSlides - slidesPerView) {
-                currentIndex = index;
-                updateSliderPosition();
-            }
-        }
-
-        // Event listeners
-        prevBtn.addEventListener('click', prevSlide);
-        nextBtn.addEventListener('click', nextSlide);
-
-        dots.forEach(dot => {
-            dot.addEventListener('click', function() {
-                goToSlide(parseInt(this.getAttribute('data-index')));
-            });
+        // Init
+        resizeAndReflow();
+        window.addEventListener('resize', () => {
+            // Debounce a bit to avoid jitter on mobile address bar show/hide
+            clearTimeout(window.__sliderResizeTimer);
+            window.__sliderResizeTimer = setTimeout(resizeAndReflow, 150);
         });
 
-        // Handle window resize
-        window.addEventListener('resize', updateSlideWidth);
-
-        // Initialize slider
-        updateSliderPosition();
+        // OPTIONAL: enable swipe (mobile)
+        let startX = 0, isDown = false;
+        track.addEventListener('pointerdown', e => { isDown = true; startX = e.clientX; });
+        window.addEventListener('pointerup', e => {
+            if (!isDown) return;
+            isDown = false;
+            const dx = e.clientX - startX;
+            if (Math.abs(dx) > 40) (dx < 0 ? nextPage() : prevPage());
+        });
     });
 </script>
+
