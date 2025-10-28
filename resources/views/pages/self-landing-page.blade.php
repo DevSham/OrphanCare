@@ -149,11 +149,13 @@
                 </div>
 
                 <div class="space-y-4 text-lg leading-relaxed text-slate-700 dark:text-slate-300">
-                    <p class="opacity-90">
-                        It began on <strong>Christmas Day, 2011</strong>. The following year — on
-                        <strong>25 December 2012</strong> — we hosted our first party with <strong>250 children</strong>.
-                        Today, by God’s grace and your help, we serve <strong>1,000+ children</strong> every Christmas.
-                    </p>
+
+                    <p class="opacity-90">It all started on <strong>Christmas Day, 2011</strong>, when I saw children digging through bins, trying to find something to eat. That sight broke my heart children spending Christmas in trash, eating leftovers while others were celebrating.</p>
+                    <p class="opacity-90">The next year, on <strong>25th December 2012</strong>, I made a promise that no child on the streets of Kampala should spend Christmas like that again. That’s how <strong>Street Kid Christmas</strong> began with a small meal that fed <strong>250 street children</strong>.</p>
+                    <p class="opacity-90">Ever since then, the celebration has grown each year. Today, between <strong>1,000 and 1,300 children</strong> come together for a full day of joy and hope with music, dance, acrobatics, food, gifts, bouncing castles, and face painting.</p>
+                    <p class="opacity-90">From these annual events, we were able to form a <strong>children’s home (opened in 2014)</strong>, which now cares for <strong>35 former street children</strong>. They go to school, receive medical care, and live a normal, happy life full of dreams and second chances.</p>
+                    <div class="quote">What began with 250 plates of food has grown into a movement of love, faith, and hope feeding over 1,000 children every Christmas and changing lives every single year.</div>
+
 
                     <blockquote class="rounded-xl border-l-4 border-[#7A0E1B] bg-[#7A0E1B]/5 p-4 italic
                                         text-slate-800 dark:text-slate-200">
@@ -172,77 +174,116 @@
             </h2>
             <p class="mt-1 text-lg text-slate-600 dark:text-slate-300">
                 Every smile tells a story. Every meal shared plants a seed of hope.
-            </p>
+                Your kindness can change a child’s Christmas and their future.
 
-            <div class="max-w-7xl mx-auto px-4"> <!-- widened to max-w-7xl + padding -->
+                Join us by supporting meals, gifts, or school supplies for a child in Kampala            </p>
 
-                <div class="slider-container relative overflow-hidden rounded-xl">
-                    <div class="slider-track flex transition-transform duration-700 ease-in-out">
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                <div class="slider-container relative overflow-hidden">
+                    <div class="slider-track flex gap-6 transition-transform duration-700 ease-in-out px-2">
                         <!-- Slide 1 -->
-                        <div class="slide flex-shrink-0 w-full p-2">
-                            <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
                                 <img src="/images/kids.JPG" class="w-full h-full object-cover" alt="Kids"/>
                             </div>
                         </div>
 
                         <!-- Slide 2 -->
-                        <div class="slide flex-shrink-0 w-full p-2">
-                            <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
                                 <img src="/images/qrpic.jpeg" class="w-full h-full object-cover" alt="Helping Kids"/>
                             </div>
                         </div>
 
-                        <!-- Slide 4 -->
-                        <div class="slide flex-shrink-0 w-full p-2">
-                            <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
+                        <!-- Slide 3 -->
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
                                 <img src="/images/drinks.JPG" class="w-full h-full object-cover" alt="Drinks"/>
                             </div>
                         </div>
 
-                        <!-- Slide 5 -->
-                        <div class="slide flex-shrink-0 w-full p-2">
-                            <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
+                        <!-- Slide 4 -->
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
                                 <img src="/images/bread.JPG" class="w-full h-full object-cover" alt="Bread"/>
                             </div>
                         </div>
 
-                        <!-- Slide 6 -->
-                        <div class="slide flex-shrink-0 w-full p-2">
-                            <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
-                                <img src="/images/HELP UP  KIDS-49.JPG" class="w-full h-full object-cover" alt="Bread"/>
+                        <!-- Slide 5 -->
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
+                                <img src="/images/HELP UP  KIDS-49.JPG" class="w-full h-full object-cover" alt="Help Kids"/>
                             </div>
                         </div>
-                        <!-- Slide 3 -->
-                        <div class="slide flex-shrink-0 w-full p-2">
-                            <div class="h-[450px] md:h-[550px] lg:h-[650px] rounded-xl border border-dashed border-slate-300 bg-slate-50 overflow-hidden">
+
+                        <!-- Slide 6 -->
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
                                 <img src="/images/xmas party for street kids 2018_037.JPG" class="w-full h-full object-cover" alt="Xmas Party"/>
+                            </div>
+                        </div>
+
+                        <!-- Slide 7 -->
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
+                                <img src="/images/cloths.JPG" class="w-full h-full object-cover" alt="Xmas Party"/>
+                            </div>
+                        </div>
+                        <!-- Slide 8 -->
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
+                                <img src="/images/clothes.JPG" class="w-full h-full object-cover" alt="Xmas Party"/>
+                            </div>
+                        </div>
+                        <!-- Slide 9 -->
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
+                                <img src="/images/facepaint.JPG" class="w-full h-full object-cover" alt="Xmas Party"/>
+                            </div>
+                        </div>
+                        <!-- Slide 10 -->
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
+                                <img src="/images/facepainting.JPG" class="w-full h-full object-cover" alt="Xmas Party"/>
+                            </div>
+                        </div>
+                        <!-- Slide 11 -->
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
+                                <img src="/images/food.JPG" class="w-full h-full object-cover" alt="Xmas Party"/>
+                            </div>
+                        </div>
+                        <!-- Slide 12 -->
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
+                                <img src="/images/play.JPG" class="w-full h-full object-cover" alt="Xmas Party"/>
+                            </div>
+                        </div>
+                        <!-- Slide 12 -->
+                        <div class="slide flex-shrink-0 w-full">
+                            <div class="aspect-[16/9] md:aspect-[21/9] lg:aspect-[21/8] overflow-hidden bg-slate-100 rounded-2xl shadow-xl">
+                                <img src="/images/jump.JPG" class="w-full h-full object-cover" alt="Xmas Party"/>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Navigation -->
-                    <button class="slider-nav prev absolute left-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-slate-700" viewBox="0 0 20 20" fill="currentColor">
+                    <!-- Navigation Buttons -->
+                    <button class="slider-nav prev absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all hover:scale-110 z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                         </svg>
                     </button>
 
-                    <button class="slider-nav next absolute right-3 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-2 shadow-md">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-slate-700" viewBox="0 0 20 20" fill="currentColor">
+                    <button class="slider-nav next absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all hover:scale-110 z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </button>
                 </div>
 
-                <!-- Dots -->
-                <div class="slider-dots flex justify-center gap-2 mt-4">
-                    <span class="slider-dot active w-3 h-3 bg-slate-400 rounded-full cursor-pointer" data-index="0"></span>
-                    <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="1"></span>
-                    <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="2"></span>
-                    <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="3"></span>
-                    <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="4"></span>
-                    <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="5"></span>
-                    <span class="slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer" data-index="6"></span>
+                <!-- Dots Navigation -->
+                <div class="slider-dots flex justify-center gap-2.5 mt-6">
+                    <!-- Dots will be generated by JavaScript -->
                 </div>
             </div>
 
@@ -332,9 +373,9 @@
 
                 <p class="mt-5 text-slate-600 dark:text-slate-300">
                     Questions? Email
-                    <a href="mailto:info@helpkidsup.org"
+                    <a href="mailto:Info@helpkidsup.org"
                        class="font-semibold underline-offset-4 hover:underline text-[#5e0b15] dark:text-[#C6A669]">
-                        info@helpkidsup.org
+                        Info@helpkidsup.org
                     </a>
                 </p>
             </div>
@@ -344,7 +385,7 @@
         <footer class="mt-8 border-t border-slate-200 pt-4 text-center text-sm text-slate-600
                        dark:border-slate-700 dark:text-slate-300">
             <p>
-                📧 <a class="font-semibold hover:underline" href="mailto:info@helpkidsup.org">info@helpkidsup.org</a>
+                📧 <a class="font-semibold hover:underline" href="mailto:Info@helpkidsup.org">Info@helpkidsup.org</a>
                 <span class="mx-2">•</span>
                 🌍 <a class="font-semibold hover:underline" href="https://www.helpkidsup.org" target="_blank" rel="noopener">www.helpkidsup.org</a>
             </p>
@@ -361,46 +402,47 @@
         const prevBtn = document.querySelector('.slider-nav.prev');
         const nextBtn = document.querySelector('.slider-nav.next');
         const dotsWrap = document.querySelector('.slider-dots');
+        const sliderContainer = document.querySelector('.slider-container');
 
         if (!track || !slides.length) return;
 
-        let currentPage = 0;           // "page" = a viewport of N slides
+        let currentPage = 0;
         let slidesPerView = 1;
         let totalSlides = slides.length;
         let totalPages = 1;
+        let autoPlayInterval;
+        const autoPlayDelay = 5000; // 5 seconds
 
         function getSlidesPerView() {
-            // Match your breakpoints (can tweak as needed)
-            if (window.innerWidth >= 1024) return 3; // lg+
-            if (window.innerWidth >= 640)  return 2; // sm+
-            return 1;                                  // xs
+            if (window.innerWidth >= 1024) return 3;
+            if (window.innerWidth >= 640) return 2;
+            return 1;
         }
 
         function setSlideWidths() {
             const basis = (100 / slidesPerView) + '%';
             slides.forEach(s => {
-                s.style.flex = `0 0 ${basis}`;   // width per slide
-                s.style.maxWidth = basis;        // keep from stretching
+                s.style.flex = `0 0 ${basis}`;
+                s.style.maxWidth = basis;
             });
             track.style.display = 'flex';
             track.style.transition = 'transform 700ms ease-in-out';
         }
 
         function calcPages() {
-            // If fewer slides than viewport, clamp to single page
             if (totalSlides <= slidesPerView) {
                 totalPages = 1;
             } else {
-                totalPages = totalSlides - slidesPerView + 1; // number of left-most positions
+                totalPages = totalSlides - slidesPerView + 1;
             }
         }
 
         function buildDots() {
             if (!dotsWrap) return;
-            dotsWrap.innerHTML = ''; // rebuild
+            dotsWrap.innerHTML = '';
             for (let i = 0; i < totalPages; i++) {
                 const dot = document.createElement('span');
-                dot.className = 'slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer';
+                dot.className = 'slider-dot w-3 h-3 bg-slate-300 rounded-full cursor-pointer transition-all hover:scale-125';
                 dot.dataset.index = String(i);
                 dot.addEventListener('click', () => goToPage(i));
                 dotsWrap.appendChild(dot);
@@ -410,10 +452,10 @@
         function setActiveDot() {
             if (!dotsWrap) return;
             const dots = dotsWrap.querySelectorAll('.slider-dot');
-            dots.forEach((d, i) => d.classList.toggle('active', i === currentPage));
-            dots.forEach((d) => {
-                // optional: stronger style for active
-                d.style.opacity = d.classList.contains('active') ? '1' : '0.5';
+            dots.forEach((d, i) => {
+                d.classList.toggle('bg-slate-600', i === currentPage);
+                d.classList.toggle('bg-slate-300', i !== currentPage);
+                d.style.opacity = d.classList.contains('bg-slate-600') ? '1' : '0.5';
             });
         }
 
@@ -427,18 +469,20 @@
             if (currentPage < totalPages - 1) {
                 currentPage++;
             } else {
-                currentPage = 0; // loop
+                currentPage = 0;
             }
             updatePosition();
+            resetAutoPlay(); // Reset timer on manual navigation
         }
 
         function prevPage() {
             if (currentPage > 0) {
                 currentPage--;
             } else {
-                currentPage = totalPages - 1; // loop
+                currentPage = totalPages - 1;
             }
             updatePosition();
+            resetAutoPlay(); // Reset timer on manual navigation
         }
 
         function goToPage(i) {
@@ -446,6 +490,27 @@
             if (i > totalPages - 1) i = totalPages - 1;
             currentPage = i;
             updatePosition();
+            resetAutoPlay(); // Reset timer on manual navigation
+        }
+
+        // Auto-play functionality
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextPage, autoPlayDelay);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+
+        // Pause auto-play on hover
+        if (sliderContainer) {
+            sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+            sliderContainer.addEventListener('mouseleave', startAutoPlay);
         }
 
         function resizeAndReflow() {
@@ -455,33 +520,45 @@
             setSlideWidths();
             calcPages();
 
-            // If slides-per-view changed, ensure current page is still valid
             if (currentPage > totalPages - 1) currentPage = Math.max(0, totalPages - 1);
 
             buildDots();
             updatePosition();
         }
 
-        // Bind buttons if present
+        // Bind buttons
         prevBtn && prevBtn.addEventListener('click', prevPage);
         nextBtn && nextBtn.addEventListener('click', nextPage);
 
-        // Init
+        // Initialize
         resizeAndReflow();
+        startAutoPlay(); // Start auto-play on load
+
         window.addEventListener('resize', () => {
-            // Debounce a bit to avoid jitter on mobile address bar show/hide
             clearTimeout(window.__sliderResizeTimer);
             window.__sliderResizeTimer = setTimeout(resizeAndReflow, 150);
         });
 
-        // OPTIONAL: enable swipe (mobile)
+        // Swipe functionality
         let startX = 0, isDown = false;
-        track.addEventListener('pointerdown', e => { isDown = true; startX = e.clientX; });
+        track.addEventListener('pointerdown', e => {
+            isDown = true;
+            startX = e.clientX;
+            stopAutoPlay(); // Pause auto-play during interaction
+        });
+
         window.addEventListener('pointerup', e => {
             if (!isDown) return;
             isDown = false;
             const dx = e.clientX - startX;
-            if (Math.abs(dx) > 40) (dx < 0 ? nextPage() : prevPage());
+            if (Math.abs(dx) > 40) {
+                (dx < 0 ? nextPage() : prevPage());
+            }
+            startAutoPlay(); // Resume auto-play after interaction
         });
+
+        // Pause auto-play when window loses focus
+        window.addEventListener('blur', stopAutoPlay);
+        window.addEventListener('focus', startAutoPlay);
     });
 </script>

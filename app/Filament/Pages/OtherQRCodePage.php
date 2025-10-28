@@ -24,15 +24,15 @@ class OtherQRCodePage extends Page
     public string $qrCaption     = 'Every Smile Has a Story';
     public string $scanText      = 'Scan to Hear It';
 
-    public string $body = "Each December, I travel home to Uganda to host a Christmas celebration for over 1,000 street children—sharing food, gifts, and love. This ride helps tell story";
+    public string $body = "Each December, I go to Kampala, Uganda to celebrate Christmas with over 1,000 street children giving food, clothes, shoes, and love. It’s a day when forgotten hearts remember they still matter.";
 
     public string $hostName      = "Jeff! Your Rider Today.";
     public string $hostSubtitle  = "A Ride With a Purpose";
     public string $footerNote    = "Informational only — no donations collected during rides";
 
     // Where the QR should point
-    public string $qrUrl         = 'https://donate.stripe.com/eVq4gz5fJe1Tg2J5SBenS0M';
-    public string $landingUrl         = 'http://127.0.0.1:8000';
+    public string $qrUrl         = 'https://helpkidsup.org';
+    public string $landingUrl         = 'https://helpkidsup.org';
 
     // Background photo you showed (place your file in /public/images)
     public string $photoPath     = '/images/qrpic.jpeg';

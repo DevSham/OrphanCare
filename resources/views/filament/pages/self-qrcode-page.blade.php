@@ -64,12 +64,12 @@
         .top{
             background:var(--maroon);
             color:#fff;
-            padding:clamp(18px,3vw,28px) clamp(16px,3vw,28px);
+            padding:clamp(10px,2.5vw,20px) clamp(14px,3vw,20px);
             text-align:center;
         }
         .top h1{
-            margin:0 0 6px;
-            font-size:clamp(26px,5.2vw,44px);
+            margin:0 0 4px;
+            font-size:clamp(24px,4.2vw,32px);
             font-weight:900;
             letter-spacing:.4px;
             line-height:1.1;
@@ -172,10 +172,10 @@
 
             /* Fixed height distribution to fit exactly 297mm */
             .top{
-                padding: 8mm 10mm 6mm !important;
+                padding: 6mm 8mm 4mm !important;
                 background: var(--maroon) !important;
                 text-align: center;
-                flex: 0 0 65mm; /* Fixed height for top section */
+                flex: 0 0 60mm; /* Fixed height for top section */
                 display: flex;
                 flex-direction: column;
                 justify-content: center;

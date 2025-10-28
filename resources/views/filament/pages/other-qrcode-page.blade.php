@@ -64,12 +64,12 @@
         .top{
             background:var(--maroon);
             color:#fff;
-            padding:clamp(18px,3vw,28px) clamp(16px,3vw,28px);
+            padding:clamp(14px,3vw,20px) clamp(14px,3vw,22px);
             text-align:center;
         }
         .top h1{
             margin:0 0 6px;
-            font-size:clamp(26px,5.2vw,44px);
+            font-size:clamp(10px,5.2vw,44px);
             font-weight:900;
             letter-spacing:.4px;
             line-height:1.1;
@@ -447,12 +447,12 @@
         .middle-section .body-copy{
             font-weight: 600;
             color: #ffffff !important;
-            text-shadow: 0 2px 4px rgba(0,0,0,.60);
+            text-shadow: 0 2px 2px rgba(0,0,0,.60);
             margin-top: 2px;
             max-width: 180mm;                 /* keeps it clear of the QR zone */
-            padding-bottom: 120mm;               /* reserve space for the QR on the right */
+            padding-bottom: 100mm;               /* reserve space for the QR on the right */
             padding-right: 2mm;               /* reserve space for the QR on the right */
-            font-size: clamp(20px, 3.2vw, 34px);
+            font-size: clamp(10px, 3.2vw, 25px);
             line-height: 1.35;
         }
 
