@@ -438,7 +438,7 @@
             style="background-image:url('{{ asset(ltrim($photoPath, '/')) }}'); background-size:cover; background-position:center; background-repeat:no-repeat;"
         >
             {{-- soft dark veil UNDER content --}}
-{{--            <div class="absolute inset-0 bg-black/25 z-0"></div>--}}
+            {{--            <div class="absolute inset-0 bg-black/25 z-0"></div>--}}
 
             {{-- paragraph (flows normally) --}}
             <div class="relative z-10 w-full px-6 py-10 md:px-10 md:py-12">

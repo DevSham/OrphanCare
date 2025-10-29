@@ -497,8 +497,8 @@
 
         <footer class="footer">
             <div>
-                <div class="tagline">{{ $qrCaption }} — {{ $scanText }}</div>
-                <div class="subnote">Thank you for spreading hope this Christmas.</div>
+                <div class="tagline">{{ $qrCaption }}</div>
+                <div class="subnote">Shared to inspire -- informational only; no donations are collected during this ride.</div>
             </div>
         </footer>
     </main>

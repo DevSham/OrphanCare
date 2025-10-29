@@ -19,12 +19,13 @@ class OtherQRCodePage extends Page
 
     public string $headline      = 'STREET KIDS CHRISTMAS 2025';
     public string $subheadline   = 'This Ride Tells a Story';
-    public string $tagline       = 'Feeding Hope to Over 1,000 Children in Kampala, Uganda';
+    public string $tagline       = 'Feeding Hope to Over 1,000 Street Children in Kampala, Uganda';
 
-    public string $qrCaption     = 'Every Smile Has a Story';
-    public string $scanText      = 'Scan to Hear It';
+    public string $qrCaption     = 'A Ride With a Purpose';
+//    public string $scanText      = 'Scan to Hear It';
 
-    public string $body = "Each December, I go to Kampala, Uganda to celebrate Christmas with over 1,000 street children giving food, clothes, shoes, and love. It’s a day when forgotten hearts remember they still matter.";
+    public string $body = "Each December, I travel to Kampala Uganda to host the Street Kids Christmas Party,
+    sharing food, clothing, shoes, music, bouncing castles, face painting, and unforgettable fun.";
 
     public string $hostName      = "Jeff! Your Rider Today.";
     public string $hostSubtitle  = "A Ride With a Purpose";
@@ -75,7 +76,7 @@ class OtherQRCodePage extends Page
             'photoPath'    => $this->photoPath,
             'qrDataUrl'    => "data:image/png;base64,{$qrPng}",
             'qrCaption' => $this->qrCaption,
-            'scanText' => $this->scanText,
+//            'scanText' => $this->scanText,
         ];
     }
 

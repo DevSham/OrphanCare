@@ -17,7 +17,7 @@ class SelfQRCodePage extends Page
     public string $headline      = 'HELP KIDS UP';
     public string $subheadline   = 'STREET KIDS';
     public string $tagline       = 'CHRISTMAS PARTY 2025';
-    public string $mission       = 'Feeding Hope to Over 1,000 Children in Kampala, Uganda';
+    public string $mission       = 'Feeding Hope to Over 1,000 Street Children in Kampala, Uganda';
 
     public string $donationText  = 'With just $10 you can feed a child this Christmas.';
     public string $qrCaption     = 'Every Smile Has a Story';
