@@ -9,9 +9,9 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class OtherQRCodePage extends Page
 {
     protected string $view = 'filament.pages.other-qrcode-page';
-    protected static ?string $navigationLabel = 'Other QR Code';
+    protected static ?string $navigationLabel = 'Uber Ride QR Code';
     protected static ?string $title = 'Street Kids Christmas 2025';
-    protected static ?string $slug = 'street-kid-christmas';
+    protected static ?string $slug = 'street-kids-christmas-ride';
 
     public string $headline      = 'STREET KIDS CHRISTMAS 2025';
     public string $subheadline   = 'This Ride Tells a Story';
@@ -23,7 +23,7 @@ class OtherQRCodePage extends Page
     public string $footerNote    = "Informational only — no donations collected during rides";
 
     // CHANGED: QR now points to tracking URL instead of direct URL
-    public string $campaignSlug  = 'street-kids-christmas(UberScan)-2025';
+    public string $campaignSlug  = 'street-kids-christmas-ride';
     public string $landingUrl    = 'https://helpkidsup.org';
     public string $photoPath     = '/images/qrpic.jpeg';
 

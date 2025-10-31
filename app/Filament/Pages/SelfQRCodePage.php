@@ -10,7 +10,7 @@ class SelfQRCodePage extends Page
 {
     protected static ?string $navigationLabel = 'Self QR Code';
     protected static ?string $title = 'Self QR Code';
-    protected static ?string $slug = 'self-qr';
+    protected static ?string $slug = 'street-kids-christmas';
     protected string $view = 'filament.pages.self-qrcode-page';
 
     // ===== Poster text (mapped to the HTML) =====
@@ -22,6 +22,8 @@ class SelfQRCodePage extends Page
     public string $donationText  = 'With just $10 you can feed a child this Christmas.';
     public string $qrCaption     = 'Every Smile Has a Story';
     public string $scanText      = 'Scan to Hear It';
+
+    public string $campaignSlug  = 'street-kids-christmas';
 
     // Assets / links
     public string $qrUrl      = 'https://helpkidsup.org/support';
@@ -52,9 +54,12 @@ class SelfQRCodePage extends Page
 
     public function getViewData(): array
     {
+        // Build tracking URL for QR code
+        $trackingUrl = route('qr.track', $this->campaignSlug);
         // Inline QR as base64 PNG so the view can <img src="...">
+
         $qrPng = base64_encode(
-            QrCode::format('png')->size(280)->margin(1)->generate($this->qrUrl)
+            QrCode::format('png')->size(280)->margin(1)->generate($trackingUrl)
         );
 
         return [

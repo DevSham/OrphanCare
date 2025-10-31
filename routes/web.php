@@ -11,5 +11,5 @@ Route::get('/support', function () {
     return view('pages.self-landing-page');
 })->name('skc.support');
 
-Route::get('/qr/{campaign}', [QrTrackingController::class, 'track'])
+Route::get('/{campaign}', [QrTrackingController::class, 'track'])
     ->name('qr.track');

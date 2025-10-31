@@ -45,8 +45,8 @@ class QrTrackingController extends Controller
     {
         // Map campaigns to their destination URLs
         $urls = [
-            'street-kids-christmas' => 'https://helpkidsup.org',
-            // Add more campaigns here as needed
+            'street-kids-christmas-ride' => 'https://helpkidsup.org',
+            'street-kids-christmas' => 'https://helpkidsup.org/support',
         ];
 
         return $urls[$campaign] ?? 'https://helpkidsup.org';
