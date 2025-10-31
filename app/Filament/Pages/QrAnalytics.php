@@ -8,30 +8,43 @@ use Illuminate\Support\Facades\DB;
 
 class QrAnalytics extends Page
 {
-//    protected string $view = 'filament.pages.qr-analytics';
     protected static ?string $navigationLabel = 'QR Analytics';
     protected static ?string $title = 'QR Code Scan Analytics';
-    protected  string $view = 'filament.pages.qr-analytics';
+    protected string $view = 'filament.pages.qr-analytics';
+
+    public $selectedCampaign = 'all';
 
     public function getViewData(): array
     {
-        $campaign = 'street-kids-christmas';
+        $baseQuery = QrScan::query();
+
+        // Apply campaign filter if not "all"
+        if ($this->selectedCampaign && $this->selectedCampaign !== 'all') {
+            $baseQuery->forCampaign($this->selectedCampaign);
+        }
 
         // Total scans
-        $totalScans = QrScan::forCampaign($campaign)->count();
-        $todayScans = QrScan::forCampaign($campaign)->today()->count();
-        $weekScans = QrScan::forCampaign($campaign)->thisWeek()->count();
-        $monthScans = QrScan::forCampaign($campaign)->thisMonth()->count();
+        $totalScans = (clone $baseQuery)->count();
+        $todayScans = (clone $baseQuery)->today()->count();
+        $weekScans = (clone $baseQuery)->thisWeek()->count();
+        $monthScans = (clone $baseQuery)->thisMonth()->count();
+
+        // Campaign breakdown (for all campaigns)
+        $campaignStats = QrScan::select('campaign', DB::raw('count(*) as count'))
+            ->groupBy('campaign')
+            ->orderByDesc('count')
+            ->pluck('count', 'campaign')
+            ->toArray();
 
         // Device breakdown
-        $deviceStats = QrScan::forCampaign($campaign)
+        $deviceStats = (clone $baseQuery)
             ->select('device_type', DB::raw('count(*) as count'))
             ->groupBy('device_type')
             ->pluck('count', 'device_type')
             ->toArray();
 
         // Browser breakdown
-        $browserStats = QrScan::forCampaign($campaign)
+        $browserStats = (clone $baseQuery)
             ->select('browser', DB::raw('count(*) as count'))
             ->groupBy('browser')
             ->orderByDesc('count')
@@ -40,7 +53,7 @@ class QrAnalytics extends Page
             ->toArray();
 
         // Platform breakdown
-        $platformStats = QrScan::forCampaign($campaign)
+        $platformStats = (clone $baseQuery)
             ->select('platform', DB::raw('count(*) as count'))
             ->groupBy('platform')
             ->orderByDesc('count')
@@ -49,7 +62,7 @@ class QrAnalytics extends Page
             ->toArray();
 
         // Daily scans for the last 30 days
-        $dailyScans = QrScan::forCampaign($campaign)
+        $dailyScans = (clone $baseQuery)
             ->where('scanned_at', '>=', now()->subDays(30))
             ->select(DB::raw('DATE(scanned_at) as date'), DB::raw('count(*) as count'))
             ->groupBy('date')
@@ -59,21 +72,30 @@ class QrAnalytics extends Page
             ->toArray();
 
         // Recent scans
-        $recentScans = QrScan::forCampaign($campaign)
+        $recentScans = (clone $baseQuery)
             ->orderByDesc('scanned_at')
             ->limit(20)
             ->get();
 
         return [
+            'selectedCampaign' => $this->selectedCampaign,
             'totalScans' => $totalScans,
             'todayScans' => $todayScans,
             'weekScans' => $weekScans,
             'monthScans' => $monthScans,
+            'campaignStats' => $campaignStats,
             'deviceStats' => $deviceStats,
             'browserStats' => $browserStats,
             'platformStats' => $platformStats,
             'dailyScans' => $dailyScans,
             'recentScans' => $recentScans,
         ];
+    }
+
+    // Method to handle campaign selection
+    public function selectCampaign($campaign)
+    {
+        $this->selectedCampaign = $campaign;
+        $this->getViewData(); // Refresh the data
     }
 }
