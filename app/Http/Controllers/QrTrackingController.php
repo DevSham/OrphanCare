@@ -11,15 +11,22 @@ class QrTrackingController extends Controller
 {
     public function track(Request $request, string $campaign)
     {
-// Parse user agent using Laravel's built-in methods
+        // Parse user agent using Laravel's built-in methods
         $userAgent = $request->userAgent();
-// Simple device detection
+
+        // Limit user agent length to prevent storage issues
+        $userAgent = substr($userAgent ?? '', 0, config('campaigns.input_limits.user_agent', 1000));
+
+        // Simple device detection
         $deviceType = $this->detectDeviceType($userAgent);
         $browser = $this->detectBrowser($userAgent);
         $platform = $this->detectPlatform($userAgent);
 
+        $validCampaigns = array_keys(config('campaigns.valid_campaigns', []));
+
+
         $validator = validator(['campaign' => $campaign], [
-            'campaign' => 'required|in:street-kids-christmas-ride,street-kids-christmas'
+            'campaign' => 'required|in:'. implode(',', $validCampaigns)
         ]);
 
         if ($validator->fails()) {
@@ -28,25 +35,28 @@ class QrTrackingController extends Controller
                 'ip' => $request->ip()
             ]);
 
-            return redirect()->away('https://helpkidsup.org/error/invalid-campaign');
+            abort(404, 'Invalid campaign');
         }
 
-// Record the scan
+        // Limit referer length
+        $referer = substr($request->header('referer') ?? '', 0, config('campaigns.input_limits.referer', 500));
+
+        // Record the scan
         QrScan::create([
             'campaign' => $campaign,
             'ip_address' => $request->ip(),
             'user_agent' => $userAgent,
-            'referer' => $request->header('referer'),
+            'referer' => $referer,
             'device_type' => $deviceType,
             'browser' => $browser,
             'platform' => $platform,
             'scanned_at' => now(),
         ]);
 
-// Get the redirect URL based on campaign
+        // Get the redirect URL based on campaign
         $redirectUrl = $this->getRedirectUrl($campaign);
 
-// Redirect to the actual destination
+        // Redirect to the actual destination
         return redirect()->away($redirectUrl);
     }
 
@@ -102,20 +112,14 @@ class QrTrackingController extends Controller
 
     private function getRedirectUrl(string $campaign): string
     {
-// Define valid campaigns and their destination URLs
-        $validCampaigns = [
-            'street-kids-christmas-ride' => 'https://helpkidsup.org',
-            'street-kids-christmas' => 'https://helpkidsup.org/support',
-        ];
+        // Get valid campaigns from centralized config
+        $validCampaigns = config('campaigns.valid_campaigns', []);
 
-// Check if the campaign is valid
+        // Return only from whitelist, no fallback to redirect
         if (!array_key_exists($campaign, $validCampaigns)) {
-            throw new \InvalidArgumentException(
-                "Invalid campaign: '{$campaign}'. " .
-                "Valid campaigns are: " . implode(', ', array_keys($validCampaigns))
-            );
+            abort(404, 'Invalid campaign');
         }
 
-        return $validCampaigns[$campaign] ?? redirect()->away('https://helpkidsup.org/error/invalid-campaign');
+        return $validCampaigns[$campaign];
     }
 }

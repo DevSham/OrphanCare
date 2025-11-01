@@ -112,4 +112,7 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    'admin_emails' => array_filter(explode(',', env('ADMIN_EMAILS', ''))),
+
+
 ];

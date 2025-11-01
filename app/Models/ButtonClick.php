@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 
 class ButtonClick extends Model
 {
@@ -29,7 +29,7 @@ class ButtonClick extends Model
         'clicked_at' => 'datetime',
     ];
 
-    // Scopes
+    // Scopes - Fixed type hints to use Eloquent Builder
     public function scopeForCampaign(Builder $query, string $campaign): Builder
     {
         return $query->where('campaign', $campaign);
@@ -38,6 +38,11 @@ class ButtonClick extends Model
     public function scopeToday(Builder $query): Builder
     {
         return $query->whereDate('clicked_at', today());
+    }
+
+    public function scopeForButton(Builder $query, string $buttonId): Builder
+    {
+        return $query->where('button_id', $buttonId);
     }
 
     public function scopeThisWeek(Builder $query): Builder
@@ -50,14 +55,17 @@ class ButtonClick extends Model
         return $query->whereBetween('clicked_at', [now()->startOfMonth(), now()->endOfMonth()]);
     }
 
-    public function scopeForButton(Builder $query, string $buttonId): Builder
-    {
-        return $query->where('button_id', $buttonId);
-    }
-
     // Helper method to parse user agent
-    public static function parseUserAgent($userAgent)
+    public static function parseUserAgent(?string $userAgent): array
     {
+        if (empty($userAgent)) {
+            return [
+                'browser' => 'Unknown',
+                'platform' => 'Unknown',
+                'device_type' => 'desktop',
+            ];
+        }
+
         $browser = 'Unknown';
         $platform = 'Unknown';
         $deviceType = 'desktop';

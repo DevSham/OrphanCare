@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -45,13 +46,30 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
         ];
     }
 
+    /**
+     * Determine if the user can access the Filament panel.
+     *
+     * SECURITY: Restrict admin panel access to authorized users only.
+     */
     public function canAccessPanel(Panel $panel): bool
     {
-        // Implement your logic here to determine if the user can access the panel
-        // For example, based on roles or specific user attributes.
-        return true; // Or a more specific check like $this->isAdmin();
+        // Option 1: Check specific admin emails from config
+        $adminEmails = config('auth.admin_emails', []);
+        if (in_array($this->email, $adminEmails, true)) {
+            return true;
+        }
+
+        // Option 2: Check is_admin column (recommended)
+        // Add migration: $table->boolean('is_admin')->default(false);
+        // return $this->is_admin === true;
+
+        // Option 3: Check email domain
+        // return str_ends_with($this->email, '@helpkidsup.org');
+
+        return false;
     }
 }
