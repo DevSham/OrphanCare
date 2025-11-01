@@ -18,6 +18,8 @@
             } catch (_) {}
         })();
     </script>
+    <script src="{{ asset('js/button-tracking.js') }}"></script>
+
 
     @vite(['resources/css/app.css','resources/js/app.js'])
     @filamentStyles

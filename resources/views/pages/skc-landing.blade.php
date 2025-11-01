@@ -426,11 +426,13 @@
                     </p>
                     <div class="mt-5">
                         <a href="https://donate.stripe.com/eVq4gz5fJe1Tg2J5SBenS0M"
-                           target="_blank" rel="noopener noreferrer"
-                           class="inline-flex items-center gap-2 rounded-full border-2 border-[#7A0E1B] bg-[#7A0E1B] px-6 py-3
-                              text-sm font-bold text-white transition hover:brightness-105 focus:outline-none
-                              focus-visible:ring-4 focus-visible:ring-[#7A0E1B]/30"
-                           aria-label="Learn more and support this mission on our secure site">
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           data-track-button
+                           data-campaign="street-kids-christmas-ride"
+                           data-button-id="join_mission_feed_hope"
+                           data-button-text="Join the Mission — Feed Hope"
+                           class="inline-flex items-center gap-2 rounded-full border-2 border-[#7A0E1B] bg-[#7A0E1B] px-6 py-3 text-sm font-bold text-white transition hover:brightness-105 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#7A0E1B]/30">
                             Join the Mission — Feed Hope
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path d="M12.293 4.293a1 1 0 0 1 1.414 0l6 6a1 1 0 0 1 0 1.414l-6 6a1 1 0 1 1-1.414-1.414L16.586 12H5a1 1 0 1 1 0-2h11.586l-4.293-4.293a1 1 0 0 1 0-1.414Z"/>

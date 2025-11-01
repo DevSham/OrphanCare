@@ -441,20 +441,27 @@
 
             <div class="mt-5 flex flex-col gap-2 sm:flex-row items-center text-center">
                 <div class="flex-col">
-                    <a href="https://donate.stripe.com/eVq4gz5fJe1Tg2J5SBenS0M" target="_blank" rel="noopener noreferrer"
-                       class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#7A0E1B] bg-[#7A0E1B] px-6 py-3
-                              text-sm font-bold text-white transition hover:brightness-105 focus:outline-none
-                              focus-visible:ring-4 focus-visible:ring-[#7A0E1B]/30"
-                       aria-label="Sponsor the Christmas Party via our secure donation page">
+
+                    <a href="https://donate.stripe.com/eVq4gz5fJe1Tg2J5SBenS0M"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       data-track-button
+                       data-campaign="street-kids-christmas"
+                       data-button-id="sponsor_christmas_party_10"
+                       data-button-text="Sponsor the Christmas Party $10"
+                       class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#7A0E1B] bg-[#7A0E1B] px-6 py-3 text-sm font-bold text-white transition hover:brightness-105 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#7A0E1B]/30">
                         🎁 Sponsor the Christmas Party $10
                     </a>
                 </div>
                 <div class="flex-col">
-                    <a href="https://donate.stripe.com/eVq4gz5fJe1Tg2J5SBenS0M" target="_blank" rel="noopener noreferrer"
-                       class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#7A0E1B] bg-[#7A0E1B] px-6 py-3
-                          text-sm font-bold text-white transition hover:brightness-105 focus:outline-none
-                          focus-visible:ring-4 focus-visible:ring-[#7A0E1B]/30"
-                       aria-label="Become a monthly supporter via our secure donation page">
+                    <a href="https://donate.stripe.com/eVq4gz5fJe1Tg2J5SBenS0M"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       data-track-button
+                       data-campaign="street-kids-christmas"
+                       data-button-id="monthly_supporter_35"
+                       data-button-text="Become a Monthly Supporter — $35/month"
+                       class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#7A0E1B] bg-[#7A0E1B] px-6 py-3 text-sm font-bold text-white transition hover:brightness-105 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#7A0E1B]/30">
                         💛 Become a Monthly Supporter — $35/month
                     </a>
                 </div>

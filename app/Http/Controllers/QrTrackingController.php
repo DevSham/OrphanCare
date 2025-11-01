@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\QrScan;
+use Illuminate\Support\Facades\Log;
 use Jenssegers\Agent\Agent;
 
 class QrTrackingController extends Controller
@@ -21,6 +22,21 @@ class QrTrackingController extends Controller
         } elseif ($agent->isTablet()) {
             $deviceType = 'tablet';
         }
+
+        $validator = validator(['campaign' => $campaign], [
+            'campaign' => 'required|in:street-kids-christmas-ride,street-kids-christmas'
+        ]);
+
+        if ($validator->fails()) {
+            Log::warning('Invalid campaign accessed', [
+                'campaign' => $campaign,
+                'ip' => $request->ip()
+            ]);
+
+            return redirect()->away('https://helpkidsup.org/error/invalid-campaign');
+        }
+
+
 
         // Record the scan
         QrScan::create([
@@ -49,6 +65,6 @@ class QrTrackingController extends Controller
             'street-kids-christmas' => 'https://helpkidsup.org/support',
         ];
 
-        return $urls[$campaign] ?? 'https://helpkidsup.org';
+        return $urls[$campaign];
     }
 }

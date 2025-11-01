@@ -3,16 +3,19 @@
         {{-- Campaign Filter --}}
         <x-filament::section>
             <x-slot name="heading">Campaign Filter</x-slot>
-            <div class="flex flex-wrap gap-4">
+            <div class="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-1">
                 <x-filament::button
                     wire:click="$set('selectedCampaign', 'all')"
-                    :type="$selectedCampaign === 'all' ? 'primary' : 'secondary'">
+                    :type="$selectedCampaign === 'all' ? 'primary' : 'secondary'"
+                    class="w-full sm:w-auto justify-center">
                     All Campaigns ({{ array_sum($campaignStats) }})
                 </x-filament::button>
-                @foreach($campaignStats as $campaign => $count)
+
+                @foreach ($campaignStats as $campaign => $count)
                     <x-filament::button
                         wire:click="$set('selectedCampaign', '{{ $campaign }}')"
-                        :type="$selectedCampaign === $campaign ? 'primary' : 'secondary'">
+                        :type="$selectedCampaign === $campaign ? 'primary' : 'secondary'"
+                        class="w-full sm:w-auto justify-center">
                         {{ \Illuminate\Support\Str::title(str_replace('-', ' ', $campaign)) }} ({{ $count }})
                     </x-filament::button>
                 @endforeach
