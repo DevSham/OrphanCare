@@ -6,7 +6,7 @@ use App\Models\ButtonClick;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\DB;
 
-class ButtonAnalytics extends Page
+class ClickedButtonAnalytics extends Page
 {
     protected static ?string $navigationLabel = 'Button Analytics';
     protected static ?string $title = 'Button Click Analytics';
