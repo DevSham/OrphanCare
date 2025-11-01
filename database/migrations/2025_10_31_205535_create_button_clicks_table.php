@@ -26,9 +26,6 @@ return new class extends Migration
             $table->string('platform')->nullable();
             $table->timestamp('clicked_at');
             $table->timestamps();
-
-            $table->index(['campaign', 'clicked_at']);
-            $table->index(['button_id', 'clicked_at']);
         });
     }
 
