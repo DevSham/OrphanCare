@@ -4,6 +4,8 @@ use App\Services\ButtonTrackingService;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QrTrackingController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ButtonTrackingController;
+
 
 Route::get('/', function () {
     return view('pages.skc-landing');
@@ -17,7 +19,6 @@ Route::get('/{campaign}', [QrTrackingController::class, 'track'])
     ->name('qr.track')
     ->middleware('throttle:' . config('campaigns.rate_limits.qr_scan.max_attempts', 50) . ',' . config('campaigns.rate_limits.qr_scan.decay_minutes', 1));
 
-use App\Http\Controllers\ButtonTrackingController;
 
 Route::post('/track-button-click', [ButtonTrackingController::class, 'track'])
     ->name('button.track')

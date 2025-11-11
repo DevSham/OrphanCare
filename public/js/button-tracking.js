@@ -58,19 +58,11 @@ class ButtonTracker {
         const buttonText = button.getAttribute('data-button-text') || button.textContent.trim();
         const pageUrl = window.location.href;
 
-        // Debug logging
-        console.log('Tracking button click:', {
-            campaign,
-            buttonId,
-            buttonText,
-            pageUrl
-        });
-
         try {
             await this.trackClick(campaign, buttonId, buttonText, pageUrl);
-            console.log('✅ Button click tracked successfully');
+            // console.log('✅ Button click tracked successfully');
         } catch (error) {
-            console.warn('Button tracking failed:', error);
+            // console.warn('Button tracking failed:', error);
         }
     }
 
@@ -105,32 +97,36 @@ class ButtonTracker {
     async trackClick(campaign, buttonId, buttonText, pageUrl) {
         try {
             const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-            console.log('Sending tracking request:', {
-                campaign,
-                buttonId,
-                buttonText,
-                pageUrl,
-                csrfToken: csrfToken ? 'present' : 'missing'
-            });
+
+            // Don't send if CSRF token is missing
+            if (!csrfToken) {
+                console.warn('CSRF token missing - tracking skipped');
+                return;
+            }
+
+            // Sanitize inputs before sending
+            const sanitizedData = {
+                campaign: String(campaign).substring(0, 100),
+                button_id: String(buttonId).substring(0, 100),
+                button_text: String(buttonText).substring(0, 255),
+                page_url: String(pageUrl).substring(0, 500)
+            };
 
             const response = await fetch('/track-button-click', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-CSRF-TOKEN': csrfToken || '',
+                    'X-CSRF-TOKEN': csrfToken,
                     'X-Requested-With': 'XMLHttpRequest'
                 },
-                body: JSON.stringify({
-                    campaign: campaign,
-                    button_id: buttonId,
-                    button_text: buttonText,
-                    page_url: pageUrl
-                })
+                body: JSON.stringify(sanitizedData),
+                // Add timeout and credentials
+                signal: AbortSignal.timeout(5000), // 5 second timeout
+                credentials: 'same-origin'
             });
 
             if (!response.ok) {
-                // Get the full error response
                 const errorData = await response.json().catch(() => null);
                 console.error('Validation failed:', errorData);
 
@@ -142,11 +138,12 @@ class ButtonTracker {
             }
 
             const result = await response.json();
-            console.log('✅ Tracking successful:', result);
+            // console.log('✅ Tracking successful:', result);
             return result;
         } catch (error) {
+            // Don't expose errors to user, just log
             console.error('Button tracking failed:', error);
-            throw error;
+            // Don't re-throw - fail silently for tracking
         }
     }
 
