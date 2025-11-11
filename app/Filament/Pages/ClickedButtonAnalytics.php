@@ -88,7 +88,6 @@ class ClickedButtonAnalytics extends Page
 
         // Recent clicks
         $recentClicks = (clone $baseQuery)
-            ->with('button')
             ->orderByDesc('clicked_at')
             ->limit(20)
             ->get();

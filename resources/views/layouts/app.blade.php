@@ -6,7 +6,6 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
     {{-- No-flash theme (run before CSS) --}}
     <script>
         (function () {
@@ -21,31 +20,33 @@
             } catch (_) {}
         })();
     </script>
-    <script src="{{ asset('js/button-tracking.js') }}"></script>
-
 
     @vite(['resources/css/app.css','resources/js/app.js'])
     @filamentStyles
     @filamentScripts
+
+    {{-- Move button tracking AFTER Filament scripts --}}
+    <script src="{{ asset('js/button-tracking.js') }}"></script>
+
     @stack('styles')
 </head>
 
 <body class="min-h-screen bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
 <header class="sticky top-0 z-30 border-b border-slate-200/50 dark:border-slate-800/60 bg-white/70 dark:bg-slate-950/70 backdrop-blur">
     <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
-{{--        <a href="{{ url('/') }}" class="font-semibold">My Site</a>--}}<p>&nbsp&nbsp&nbsp</p>
+        <p>&nbsp;&nbsp;&nbsp;</p>
 
         {{-- Theme Toggle --}}
         <button
             x-data
             x-on:click="
-        const KEY = 'theme';
-        const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-        localStorage.setItem(KEY, next);
-        document.documentElement.classList.toggle('dark', next === 'dark');
-        document.documentElement.style.colorScheme = next;
-        window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: next } }));
-      "
+                const KEY = 'theme';
+                const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+                localStorage.setItem(KEY, next);
+                document.documentElement.classList.toggle('dark', next === 'dark');
+                document.documentElement.style.colorScheme = next;
+                window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme: next } }));
+            "
             type="button"
             class="inline-flex items-center gap-2 rounded-xl border border-slate-300/50 dark:border-slate-700 px-3 py-1.5 text-sm hover:bg-slate-50 dark:hover:bg-slate-900"
             aria-label="Toggle theme"
@@ -63,4 +64,3 @@
 @stack('scripts')
 </body>
 </html>
-
